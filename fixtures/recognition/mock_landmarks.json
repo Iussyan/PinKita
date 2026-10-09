@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "landmarks": [
+    {
+      "landmark_id": "landmark-historic-fountain",
+      "display_name": "Historic Fountain Monument",
+      "lat": 14.6000,
+      "lon": 120.9850,
+      "entrance_node_id": 4,
+      "recognition_radius_m": 400.0,
+      "threshold": 0.72,
+      "reference_count": 15
+    },
+    {
+      "landmark_id": "landmark-botanical-conservatory",
+      "display_name": "Botanical Conservatory Glasshouse",
+      "lat": 14.5985,
+      "lon": 120.9870,
+      "entrance_node_id": 6,
+      "recognition_radius_m": 500.0,
+      "threshold": 0.70,
+      "reference_count": 16
+    },
+    {
+      "landmark_id": "landmark-transit-hall",
+      "display_name": "Central Transit Station Pavilion",
+      "lat": 14.5990,
+      "lon": 120.9838,
+      "entrance_node_id": 1,
+      "recognition_radius_m": 350.0,
+      "threshold": 0.75,
+      "reference_count": 14
+    },
+    {
+      "landmark_id": "landmark-memorial-arch",
+      "display_name": "Civic Memorial Arch",
+      "lat": 14.5995,
+      "lon": 120.9840,
+      "entrance_node_id": 2,
+      "recognition_radius_m": 350.0,
+      "threshold": 0.74,
+      "reference_count": 18
+    },
+    {
+      "landmark_id": "landmark-cultural-center",
+      "display_name": "District Cultural Auditorium",
+      "lat": 14.5995,
+      "lon": 120.9860,
+      "entrance_node_id": 3,
+      "recognition_radius_m": 450.0,
+      "threshold": 0.71,
+      "reference_count": 15
+    }
+  ]
+}

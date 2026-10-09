@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "district_id": "synthetic-demo-district",
+  "reviewed_routes": [
+    {"route_id": "route-01", "name": "Transit Plaza to Historic Fountain", "start_node": 1, "dest_node": 4, "expected_distance_m": 219.4},
+    {"route_id": "route-02", "name": "Transit Plaza to Botanical Conservatory", "start_node": 1, "dest_node": 6, "expected_distance_m": 380.1},
+    {"route_id": "route-03", "name": "Avenue Sidewalk to Historic Fountain", "start_node": 2, "dest_node": 4, "expected_distance_m": 163.8},
+    {"route_id": "route-04", "name": "Park Crossing to Historic Fountain", "start_node": 3, "dest_node": 4, "expected_distance_m": 55.6},
+    {"route_id": "route-05", "name": "Promenade to Botanical Conservatory", "start_node": 5, "dest_node": 6, "expected_distance_m": 324.5},
+    {"route_id": "route-06", "name": "Historic Fountain to Botanical Conservatory", "start_node": 4, "dest_node": 6, "expected_distance_m": 435.7},
+    {"route_id": "route-07", "name": "Botanical Conservatory to Transit Plaza", "start_node": 6, "dest_node": 1, "expected_distance_m": 380.1},
+    {"route_id": "route-08", "name": "Historic Fountain to Avenue Sidewalk", "start_node": 4, "dest_node": 2, "expected_distance_m": 163.8},
+    {"route_id": "route-09", "name": "Park Crossing to Transit Plaza", "start_node": 3, "dest_node": 1, "expected_distance_m": 163.8},
+    {"route_id": "route-10", "name": "Botanical Conservatory to Historic Fountain", "start_node": 6, "dest_node": 4, "expected_distance_m": 435.7}
+  ]
+}

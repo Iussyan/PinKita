@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Central App Branding: Change here anytime to rebrand the app -->
+    <string name="app_name">Local AR Navigator</string>
+    <string name="about_title">About Local AR Navigator</string>
+    <string name="version_label">Version 1.0.0</string>
+
+    <!-- Navigation States -->
+    <string name="status_no_pack">No Region Installed</string>
+    <string name="status_ready">Ready to Navigate</string>
+    <string name="status_route_preview">Route Preview</string>
+    <string name="status_navigating">Navigating</string>
+    <string name="status_ar_initializing">Aligning AR…</string>
+    <string name="status_ar_degraded">AR Tracking Degraded</string>
+    <string name="status_near_destination">Near Destination</string>
+    <string name="status_completed">Route Completed</string>
+
+    <!-- Landmark Recognition States -->
+    <string name="recognition_idle">Camera Idle</string>
+    <string name="recognition_scanning">Scanning landmark…</string>
+    <string name="recognition_unknown">No matching landmark</string>
+    <string name="recognition_ambiguous">Ambiguous match</string>
+    <string name="recognition_possible">Possible match</string>
+    <string name="recognition_identified">Landmark Identified</string>
+
+    <!-- Attribution & Notices -->
+    <string name="osm_attribution">Map data © OpenStreetMap contributors</string>
+    <string name="offline_notice">Running fully offline with on-device local AI</string>
+</resources>

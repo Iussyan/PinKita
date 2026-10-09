@@ -1,0 +1,61 @@
+{
+  "district_id": "synthetic-demo-district",
+  "name": "Synthetic Public Plaza & Park",
+  "bounds": {
+    "west": 120.9830,
+    "south": 14.5980,
+    "east": 120.9880,
+    "north": 14.6010
+  },
+  "nodes": [
+    {"id": 1, "lat": 14.5990, "lon": 120.9840, "layer": 0, "name": "Transit Plaza West"},
+    {"id": 2, "lat": 14.5995, "lon": 120.9840, "layer": 0, "name": "Avenue Sidewalk North"},
+    {"id": 3, "lat": 14.5995, "lon": 120.9850, "layer": 0, "name": "Park Walkway Crossing"},
+    {"id": 4, "lat": 14.6000, "lon": 120.9850, "layer": 0, "name": "Historic Fountain Plaza (Entrance A)"},
+    {"id": 5, "lat": 14.5985, "lon": 120.9840, "layer": 0, "name": "Perimeter Promenade"},
+    {"id": 6, "lat": 14.5985, "lon": 120.9870, "layer": 0, "name": "Botanical Conservatory (Entrance B)"}
+  ],
+  "edges": [
+    {
+      "id": 101,
+      "from": 1,
+      "to": 2,
+      "length_m": 55.6,
+      "path_class": "footway",
+      "stairs": false
+    },
+    {
+      "id": 102,
+      "from": 2,
+      "to": 3,
+      "length_m": 108.2,
+      "path_class": "footway",
+      "crossing_kind": "zebra",
+      "stairs": false
+    },
+    {
+      "id": 103,
+      "from": 3,
+      "to": 4,
+      "length_m": 55.6,
+      "path_class": "steps",
+      "stairs": true
+    },
+    {
+      "id": 104,
+      "from": 1,
+      "to": 5,
+      "length_m": 55.6,
+      "path_class": "footway",
+      "stairs": false
+    },
+    {
+      "id": 105,
+      "from": 5,
+      "to": 6,
+      "length_m": 324.5,
+      "path_class": "footway",
+      "stairs": false
+    }
+  ]
+}
