@@ -1,0 +1,1836 @@
+[
+  {
+    "id": "osm-node-14423326",
+    "name": "Escolta",
+    "category": "ferry_terminal",
+    "lat": 14.5963832,
+    "lon": 120.9775262
+  },
+  {
+    "id": "osm-node-291713407",
+    "name": "The Life and Heroism of Gat Andres Bonifacio",
+    "category": "artwork",
+    "lat": 14.5909511,
+    "lon": 120.9810886
+  },
+  {
+    "id": "osm-node-294049660",
+    "name": "Douglas MacArthur",
+    "category": "memorial",
+    "lat": 14.595925,
+    "lon": 120.9804216
+  },
+  {
+    "id": "osm-node-294050136",
+    "name": "Miguel Lopez de Legaspi and Andres de Urdaneta",
+    "category": "memorial",
+    "lat": 14.5839342,
+    "lon": 120.9754561
+  },
+  {
+    "id": "osm-node-331699595",
+    "name": "Andres Bonifacio",
+    "category": "memorial",
+    "lat": 14.5945384,
+    "lon": 120.9793971
+  },
+  {
+    "id": "osm-node-597570204",
+    "name": "PNB",
+    "category": "bank",
+    "lat": 14.5919877,
+    "lon": 120.9719519
+  },
+  {
+    "id": "osm-node-598904476",
+    "name": "Uncle John's",
+    "category": "place",
+    "lat": 14.5915609,
+    "lon": 120.9719574
+  },
+  {
+    "id": "osm-node-681220766",
+    "name": "Landbank",
+    "category": "bank",
+    "lat": 14.5918738,
+    "lon": 120.9723229
+  },
+  {
+    "id": "osm-node-735198858",
+    "name": "Memorare - Manila 1945",
+    "category": "memorial",
+    "lat": 14.5905138,
+    "lon": 120.9745126
+  },
+  {
+    "id": "osm-node-735198878",
+    "name": "Chowking",
+    "category": "fast_food",
+    "lat": 14.5929258,
+    "lon": 120.9730558
+  },
+  {
+    "id": "osm-node-735198892",
+    "name": "Greenwich",
+    "category": "fast_food",
+    "lat": 14.5929552,
+    "lon": 120.9731152
+  },
+  {
+    "id": "osm-node-735198925",
+    "name": "Ilustrado",
+    "category": "restaurant",
+    "lat": 14.5877867,
+    "lon": 120.9774039
+  },
+  {
+    "id": "osm-node-860960378",
+    "name": "Spoliarium",
+    "category": "artwork",
+    "lat": 14.5869073,
+    "lon": 120.981291
+  },
+  {
+    "id": "osm-node-860960379",
+    "name": "Benigno Aquino, Jr.",
+    "category": "memorial",
+    "lat": 14.5834899,
+    "lon": 120.9757252
+  },
+  {
+    "id": "osm-node-860960380",
+    "name": "Corazon Aquino",
+    "category": "memorial",
+    "lat": 14.5834887,
+    "lon": 120.9756394
+  },
+  {
+    "id": "osm-node-860960382",
+    "name": "Sergio Osmeña",
+    "category": "memorial",
+    "lat": 14.5868647,
+    "lon": 120.9808874
+  },
+  {
+    "id": "osm-node-860960383",
+    "name": "Manuel Quezon",
+    "category": "memorial",
+    "lat": 14.5871106,
+    "lon": 120.981011
+  },
+  {
+    "id": "osm-node-997416584",
+    "name": "Club Intramuros",
+    "category": "restaurant",
+    "lat": 14.593005,
+    "lon": 120.9703747
+  },
+  {
+    "id": "osm-node-1034880052",
+    "name": "Adolfo Lopez Mateos",
+    "category": "memorial",
+    "lat": 14.5944738,
+    "lon": 120.974429
+  },
+  {
+    "id": "osm-node-1034880097",
+    "name": "Max's Restaurant",
+    "category": "restaurant",
+    "lat": 14.5935675,
+    "lon": 120.9738472
+  },
+  {
+    "id": "osm-node-1034880222",
+    "name": "Isabel II",
+    "category": "memorial",
+    "lat": 14.594237,
+    "lon": 120.9762403
+  },
+  {
+    "id": "osm-node-1034880337",
+    "name": "7-Eleven",
+    "category": "place",
+    "lat": 14.5932718,
+    "lon": 120.9774564
+  },
+  {
+    "id": "osm-node-1037266964",
+    "name": "Uncle John's",
+    "category": "place",
+    "lat": 14.5879059,
+    "lon": 120.9777001
+  },
+  {
+    "id": "osm-node-1037921413",
+    "name": "The Manila-Acapulco Galleon",
+    "category": "artwork",
+    "lat": 14.594473,
+    "lon": 120.9748396
+  },
+  {
+    "id": "osm-node-1037921414",
+    "name": "Police Station",
+    "category": "police",
+    "lat": 14.5941953,
+    "lon": 120.9788065
+  },
+  {
+    "id": "osm-node-1037921415",
+    "name": "Philippine-Mexican Marker Plaza",
+    "category": "memorial",
+    "lat": 14.594473,
+    "lon": 120.9746043
+  },
+  {
+    "id": "osm-node-1037921417",
+    "name": "Eagle Statue",
+    "category": "artwork",
+    "lat": 14.5943892,
+    "lon": 120.9791285
+  },
+  {
+    "id": "osm-node-1038011185",
+    "name": "Alexander Pushkin",
+    "category": "memorial",
+    "lat": 14.5922255,
+    "lon": 120.9808068
+  },
+  {
+    "id": "osm-node-1038011236",
+    "name": "White Knight Hotel Intramuros",
+    "category": "hotel",
+    "lat": 14.5895912,
+    "lon": 120.9756864
+  },
+  {
+    "id": "osm-node-1038011259",
+    "name": "Leon Maria Guerrero",
+    "category": "memorial",
+    "lat": 14.5926421,
+    "lon": 120.981145
+  },
+  {
+    "id": "osm-node-1038058805",
+    "name": "Filipino - Korean Soldier Monument",
+    "category": "artwork",
+    "lat": 14.5841416,
+    "lon": 120.9802178
+  },
+  {
+    "id": "osm-node-1038058852",
+    "name": "Diosdado Macapagal",
+    "category": "memorial",
+    "lat": 14.5835117,
+    "lon": 120.9800986
+  },
+  {
+    "id": "osm-node-1038058863",
+    "name": "Soul Waves",
+    "category": "artwork",
+    "lat": 14.5841839,
+    "lon": 120.9803186
+  },
+  {
+    "id": "osm-node-1038058927",
+    "name": "Jose Marti y Perez",
+    "category": "memorial",
+    "lat": 14.5842528,
+    "lon": 120.9752725
+  },
+  {
+    "id": "osm-node-1038058944",
+    "name": "Lapu-Lapu Monument",
+    "category": "memorial",
+    "lat": 14.5837782,
+    "lon": 120.9805894
+  },
+  {
+    "id": "osm-node-1038058961",
+    "name": "Flower Clock",
+    "category": "attraction",
+    "lat": 14.5832692,
+    "lon": 120.9796747
+  },
+  {
+    "id": "osm-node-1038058984",
+    "name": "General Jose de San Martin",
+    "category": "memorial",
+    "lat": 14.5841244,
+    "lon": 120.9753566
+  },
+  {
+    "id": "osm-node-1038073301",
+    "name": "Memorare",
+    "category": "memorial",
+    "lat": 14.590867,
+    "lon": 120.9811946
+  },
+  {
+    "id": "osm-node-1038073309",
+    "name": "Emilio Jacinto",
+    "category": "memorial",
+    "lat": 14.5908789,
+    "lon": 120.9815433
+  },
+  {
+    "id": "osm-node-1038073330",
+    "name": "Manila Metropolitan Theater",
+    "category": "memorial",
+    "lat": 14.5942367,
+    "lon": 120.9803321
+  },
+  {
+    "id": "osm-node-1038225278",
+    "name": "Mariner's Dental Clinic",
+    "category": "dentist",
+    "lat": 14.588025,
+    "lon": 120.9775861
+  },
+  {
+    "id": "osm-node-1038225289",
+    "name": "Liezel's Place",
+    "category": "fast_food",
+    "lat": 14.588142,
+    "lon": 120.9774217
+  },
+  {
+    "id": "osm-node-1038225295",
+    "name": "Pointer Enterprises Inc",
+    "category": "place",
+    "lat": 14.5886328,
+    "lon": 120.9770464
+  },
+  {
+    "id": "osm-node-1038225299",
+    "name": "Transnational Medical & Diagnostic Center",
+    "category": "doctors",
+    "lat": 14.5893445,
+    "lon": 120.9759764
+  },
+  {
+    "id": "osm-node-1038225302",
+    "name": "Seamen's Center",
+    "category": "community_centre",
+    "lat": 14.5893864,
+    "lon": 120.9762793
+  },
+  {
+    "id": "osm-node-1038225305",
+    "name": "Silahis Art & Artifacts",
+    "category": "place",
+    "lat": 14.5875599,
+    "lon": 120.9770771
+  },
+  {
+    "id": "osm-node-1038225312",
+    "name": "Adams Canteen",
+    "category": "restaurant",
+    "lat": 14.5889432,
+    "lon": 120.9779929
+  },
+  {
+    "id": "osm-node-1038225325",
+    "name": "Sunlai Foodhouse",
+    "category": "fast_food",
+    "lat": 14.5881576,
+    "lon": 120.9774017
+  },
+  {
+    "id": "osm-node-1038225332",
+    "name": "Sa mga Bayani ng Lungsod ng Maynila",
+    "category": "memorial",
+    "lat": 14.5880182,
+    "lon": 120.9819207
+  },
+  {
+    "id": "osm-node-1038225353",
+    "name": "7-Eleven",
+    "category": "place",
+    "lat": 14.5893165,
+    "lon": 120.9781814
+  },
+  {
+    "id": "osm-node-1038225354",
+    "name": "Canada - In Memoriam",
+    "category": "memorial",
+    "lat": 14.588006,
+    "lon": 120.9818752
+  },
+  {
+    "id": "osm-node-1038225358",
+    "name": "Casa Marinero II",
+    "category": "restaurant",
+    "lat": 14.5890687,
+    "lon": 120.9758641
+  },
+  {
+    "id": "osm-node-1038225360",
+    "name": "Casas Consistoriales",
+    "category": "memorial",
+    "lat": 14.5925078,
+    "lon": 120.9733269
+  },
+  {
+    "id": "osm-node-1038225364",
+    "name": "Barangay 657 Zone 70 Day Care Center",
+    "category": "childcare",
+    "lat": 14.5889846,
+    "lon": 120.9780597
+  },
+  {
+    "id": "osm-node-1038225372",
+    "name": "Seamary's Pharmacy",
+    "category": "pharmacy",
+    "lat": 14.5879899,
+    "lon": 120.9776207
+  },
+  {
+    "id": "osm-node-1038283674",
+    "name": "Sailor's Home",
+    "category": "hostel",
+    "lat": 14.5892463,
+    "lon": 120.9760481
+  },
+  {
+    "id": "osm-node-1038283676",
+    "name": "Pepito Foodhouse",
+    "category": "fast_food",
+    "lat": 14.5904763,
+    "lon": 120.9771346
+  },
+  {
+    "id": "osm-node-1042221778",
+    "name": "Ang Pagpapalaya ng Maynila",
+    "category": "memorial",
+    "lat": 14.5909785,
+    "lon": 120.9724523
+  },
+  {
+    "id": "osm-node-1042221783",
+    "name": "Morbai Charts/Maps & Maritime Supplies",
+    "category": "place",
+    "lat": 14.5910331,
+    "lon": 120.9735068
+  },
+  {
+    "id": "osm-node-1042221785",
+    "name": "Mananzan Handicrafts",
+    "category": "place",
+    "lat": 14.5927139,
+    "lon": 120.9721914
+  },
+  {
+    "id": "osm-node-1042221787",
+    "name": "Scout-Heroes of Colegio de San Juan de Letran, Manila",
+    "category": "memorial",
+    "lat": 14.5937478,
+    "lon": 120.9764621
+  },
+  {
+    "id": "osm-node-1054503216",
+    "name": "White Cross",
+    "category": "memorial",
+    "lat": 14.5948296,
+    "lon": 120.9696033
+  },
+  {
+    "id": "osm-node-1054503220",
+    "name": "Falsabraga de Media Naranja",
+    "category": "viewpoint",
+    "lat": 14.5953263,
+    "lon": 120.9695823
+  },
+  {
+    "id": "osm-node-1054503224",
+    "name": "Postigo de la Nuestra Señora de Soledad",
+    "category": "city_gate",
+    "lat": 14.5950189,
+    "lon": 120.9699416
+  },
+  {
+    "id": "osm-node-1054503272",
+    "name": "Wall of Martyrs",
+    "category": "memorial",
+    "lat": 14.5934525,
+    "lon": 120.9704458
+  },
+  {
+    "id": "osm-node-1054550001",
+    "name": "Uncle John's",
+    "category": "place",
+    "lat": 14.5934924,
+    "lon": 120.9737666
+  },
+  {
+    "id": "osm-node-1054550013",
+    "name": "Metrobank",
+    "category": "bank",
+    "lat": 14.5930105,
+    "lon": 120.973204
+  },
+  {
+    "id": "osm-node-1054550021",
+    "name": "Bacolod Chk-N-Bbq",
+    "category": "restaurant",
+    "lat": 14.593288,
+    "lon": 120.9735218
+  },
+  {
+    "id": "osm-node-1054550072",
+    "name": "EastWest Unibank",
+    "category": "bank",
+    "lat": 14.5932238,
+    "lon": 120.9739004
+  },
+  {
+    "id": "osm-node-1054550084",
+    "name": "UnionBank",
+    "category": "bank",
+    "lat": 14.5931563,
+    "lon": 120.97382
+  },
+  {
+    "id": "osm-node-1054550089",
+    "name": "Snappy Copy",
+    "category": "place",
+    "lat": 14.5933224,
+    "lon": 120.9739916
+  },
+  {
+    "id": "osm-node-1054550097",
+    "name": "Chinabank",
+    "category": "bank",
+    "lat": 14.5933821,
+    "lon": 120.973628
+  },
+  {
+    "id": "osm-node-1054550144",
+    "name": "Flower Stories Cafe",
+    "category": "cafe",
+    "lat": 14.5915158,
+    "lon": 120.9750377
+  },
+  {
+    "id": "osm-node-1054550149",
+    "name": "Patio de Conchita",
+    "category": "restaurant",
+    "lat": 14.5918481,
+    "lon": 120.9743462
+  },
+  {
+    "id": "osm-node-1055759062",
+    "name": "Anda Fitness Center",
+    "category": "place",
+    "lat": 14.592454,
+    "lon": 120.9760841
+  },
+  {
+    "id": "osm-node-1055759082",
+    "name": "A Cruceiro",
+    "category": "memorial",
+    "lat": 14.5940777,
+    "lon": 120.9750678
+  },
+  {
+    "id": "osm-node-1068853303",
+    "name": "The Postman",
+    "category": "artwork",
+    "lat": 14.5952642,
+    "lon": 120.9791672
+  },
+  {
+    "id": "osm-node-1358425342",
+    "name": "Rex Store Helmet",
+    "category": "place",
+    "lat": 14.5901958,
+    "lon": 120.9697734
+  },
+  {
+    "id": "osm-node-1423835511",
+    "name": "Simbahan at Kumbento ng San Juan Bautista de Bagumbayan",
+    "category": "memorial",
+    "lat": 14.5848448,
+    "lon": 120.9791342
+  },
+  {
+    "id": "osm-node-1988303842",
+    "name": "Ang Pambansang Museo",
+    "category": "memorial",
+    "lat": 14.5870722,
+    "lon": 120.9809453
+  },
+  {
+    "id": "osm-node-1988303844",
+    "name": "League of Women Voters of the Philippines, Inc.",
+    "category": "memorial",
+    "lat": 14.5869235,
+    "lon": 120.9809139
+  },
+  {
+    "id": "osm-node-1988303845",
+    "name": "Old Legislative Building",
+    "category": "memorial",
+    "lat": 14.5870574,
+    "lon": 120.9809517
+  },
+  {
+    "id": "osm-node-3173973061",
+    "name": "Metrobank",
+    "category": "bank",
+    "lat": 14.5899562,
+    "lon": 120.9709475
+  },
+  {
+    "id": "osm-node-3202752875",
+    "name": "Confucius Statue",
+    "category": "artwork",
+    "lat": 14.583169,
+    "lon": 120.977792
+  },
+  {
+    "id": "osm-node-3204308361",
+    "name": "Jaime Cardinal Sin",
+    "category": "memorial",
+    "lat": 14.5836518,
+    "lon": 120.9756302
+  },
+  {
+    "id": "osm-node-3388706140",
+    "name": "Fernanda Balboa",
+    "category": "memorial",
+    "lat": 14.5867689,
+    "lon": 120.9780127
+  },
+  {
+    "id": "osm-node-3388716896",
+    "name": "Jose Rizal Monument",
+    "category": "memorial",
+    "lat": 14.5866169,
+    "lon": 120.9774057
+  },
+  {
+    "id": "osm-node-3388905505",
+    "name": "Puerta de Almacenes",
+    "category": "yes",
+    "lat": 14.5942308,
+    "lon": 120.9723169
+  },
+  {
+    "id": "osm-node-4122194480",
+    "name": "Former Palace of the Governors General",
+    "category": "memorial",
+    "lat": 14.5918607,
+    "lon": 120.9727264
+  },
+  {
+    "id": "osm-node-4144198490",
+    "name": "Bambike",
+    "category": "place",
+    "lat": 14.5896492,
+    "lon": 120.9750684
+  },
+  {
+    "id": "osm-node-4214709543",
+    "name": "Red Cross Fire Brigade",
+    "category": "fire_station",
+    "lat": 14.59132,
+    "lon": 120.97021
+  },
+  {
+    "id": "osm-node-4352266390",
+    "name": "CF Sharp Crew Management Inc.",
+    "category": "place",
+    "lat": 14.5915684,
+    "lon": 120.9765103
+  },
+  {
+    "id": "osm-node-4352437092",
+    "name": "NYK Shipping",
+    "category": "place",
+    "lat": 14.5903962,
+    "lon": 120.9753773
+  },
+  {
+    "id": "osm-node-4427363294",
+    "name": "Amosup Sailors Home",
+    "category": "guest_house",
+    "lat": 14.5897247,
+    "lon": 120.9759497
+  },
+  {
+    "id": "osm-node-4427365592",
+    "name": "7-Eleven",
+    "category": "place",
+    "lat": 14.5910892,
+    "lon": 120.9767363
+  },
+  {
+    "id": "osm-node-4430464489",
+    "name": "Windsor International Maritime Clinic, Inc.",
+    "category": "clinic",
+    "lat": 14.5904904,
+    "lon": 120.9739471
+  },
+  {
+    "id": "osm-node-4472958648",
+    "name": "Juan Sumuroy",
+    "category": "memorial",
+    "lat": 14.5833103,
+    "lon": 120.9790154
+  },
+  {
+    "id": "osm-node-4472958650",
+    "name": "Sultan Dipatuan Kudarat",
+    "category": "memorial",
+    "lat": 14.5832619,
+    "lon": 120.9789267
+  },
+  {
+    "id": "osm-node-4472959206",
+    "name": "Unnamed Hero",
+    "category": "memorial",
+    "lat": 14.5833587,
+    "lon": 120.979104
+  },
+  {
+    "id": "osm-node-4491759189",
+    "name": "Velco Center",
+    "category": "place",
+    "lat": 14.5880107,
+    "lon": 120.9680989
+  },
+  {
+    "id": "osm-node-4524696226",
+    "name": "Intramuros Visitors' Center",
+    "category": "information",
+    "lat": 14.5928052,
+    "lon": 120.971117
+  },
+  {
+    "id": "osm-node-4524696228",
+    "name": "Savor & Kribs",
+    "category": "restaurant",
+    "lat": 14.5897069,
+    "lon": 120.9786386
+  },
+  {
+    "id": "osm-node-4578616794",
+    "name": "Solid Business Machines Center",
+    "category": "place",
+    "lat": 14.596389,
+    "lon": 120.9766757
+  },
+  {
+    "id": "osm-node-4602152189",
+    "name": "Cafe Ilang-Ilang",
+    "category": "cafe",
+    "lat": 14.5831634,
+    "lon": 120.9734262
+  },
+  {
+    "id": "osm-node-4612718296",
+    "name": "J.S. Contractor Inc.",
+    "category": "place",
+    "lat": 14.5916143,
+    "lon": 120.9750162
+  },
+  {
+    "id": "osm-node-4698359089",
+    "name": "McDonald's",
+    "category": "fast_food",
+    "lat": 14.5928223,
+    "lon": 120.9777639
+  },
+  {
+    "id": "osm-node-4719640709",
+    "name": "Manila Pier 9",
+    "category": "ferry_terminal",
+    "lat": 14.5833081,
+    "lon": 120.9652198
+  },
+  {
+    "id": "osm-node-4719640711",
+    "name": "Manila Pier 13",
+    "category": "ferry_terminal",
+    "lat": 14.5813823,
+    "lon": 120.9665219
+  },
+  {
+    "id": "osm-node-4834094621",
+    "name": "Gusali ng Lunsod ng Maynila",
+    "category": "memorial",
+    "lat": 14.5897174,
+    "lon": 120.981619
+  },
+  {
+    "id": "osm-node-4869581521",
+    "name": "Sailors Inn",
+    "category": "guest_house",
+    "lat": 14.5925393,
+    "lon": 120.972063
+  },
+  {
+    "id": "osm-node-4885421323",
+    "name": "Seamans Dorm",
+    "category": "guest_house",
+    "lat": 14.5892329,
+    "lon": 120.9687084
+  },
+  {
+    "id": "osm-node-4885423721",
+    "name": "Canteen Port Area",
+    "category": "fast_food",
+    "lat": 14.5856737,
+    "lon": 120.9734731
+  },
+  {
+    "id": "osm-node-4918562026",
+    "name": "BDO",
+    "category": "bank",
+    "lat": 14.5945433,
+    "lon": 120.9761476
+  },
+  {
+    "id": "osm-node-4918585322",
+    "name": "KFC",
+    "category": "fast_food",
+    "lat": 14.592777,
+    "lon": 120.9728899
+  },
+  {
+    "id": "osm-node-5078635524",
+    "name": "Bahay ng Marino",
+    "category": "guest_house",
+    "lat": 14.587785,
+    "lon": 120.967345
+  },
+  {
+    "id": "osm-node-5222668124",
+    "name": "DPWH Employer’s Quarters",
+    "category": "hostel",
+    "lat": 14.5901102,
+    "lon": 120.9708678
+  },
+  {
+    "id": "osm-node-5281204238",
+    "name": "Suong, Sulong",
+    "category": "artwork",
+    "lat": 14.5962239,
+    "lon": 120.9748672
+  },
+  {
+    "id": "osm-node-5421592625",
+    "name": "Ristorante delle Mitre",
+    "category": "restaurant",
+    "lat": 14.5894876,
+    "lon": 120.974704
+  },
+  {
+    "id": "osm-node-5712864416",
+    "name": "Paper + Cup",
+    "category": "cafe",
+    "lat": 14.5882658,
+    "lon": 120.9784939
+  },
+  {
+    "id": "osm-node-5757535421",
+    "name": "Starbucks",
+    "category": "cafe",
+    "lat": 14.5885008,
+    "lon": 120.9758487
+  },
+  {
+    "id": "osm-node-5778895654",
+    "name": "Metrobank",
+    "category": "bank",
+    "lat": 14.5895723,
+    "lon": 120.9748398
+  },
+  {
+    "id": "osm-node-5813762469",
+    "name": "Universidad de Manila",
+    "category": "memorial",
+    "lat": 14.5915714,
+    "lon": 120.9816557
+  },
+  {
+    "id": "osm-node-5813762470",
+    "name": "Leon Maria Guerrero",
+    "category": "memorial",
+    "lat": 14.5926409,
+    "lon": 120.9811378
+  },
+  {
+    "id": "osm-node-5813762474",
+    "name": "Session Hall of the Senate of the Philippines",
+    "category": "memorial",
+    "lat": 14.5872464,
+    "lon": 120.9813768
+  },
+  {
+    "id": "osm-node-5860992124",
+    "name": "Statue of Dr. Jose P. Laurel",
+    "category": "memorial",
+    "lat": 14.592052,
+    "lon": 120.9779748
+  },
+  {
+    "id": "osm-node-5938571786",
+    "name": "Barbara’s Casa Manila",
+    "category": "restaurant",
+    "lat": 14.5894391,
+    "lon": 120.975215
+  },
+  {
+    "id": "osm-node-6023810896",
+    "name": "Alexander Pushkin",
+    "category": "memorial",
+    "lat": 14.5922283,
+    "lon": 120.9807954
+  },
+  {
+    "id": "osm-node-6134921363",
+    "name": "Mighty Wash Coin Laundromat",
+    "category": "place",
+    "lat": 14.5898686,
+    "lon": 120.9776819
+  },
+  {
+    "id": "osm-node-6134921366",
+    "name": "Bamboo Intramuros",
+    "category": "bar",
+    "lat": 14.5945975,
+    "lon": 120.9775849
+  },
+  {
+    "id": "osm-node-6212730482",
+    "name": "Starbucks",
+    "category": "cafe",
+    "lat": 14.5929756,
+    "lon": 120.977702
+  },
+  {
+    "id": "osm-node-6302883086",
+    "name": "Rpower extension Intramuros",
+    "category": "place",
+    "lat": 14.5926302,
+    "lon": 120.9769013
+  },
+  {
+    "id": "osm-node-6303089088",
+    "name": "Kabayan Food House",
+    "category": "fast_food",
+    "lat": 14.5895576,
+    "lon": 120.9766463
+  },
+  {
+    "id": "osm-node-6313290985",
+    "name": "Shakey's",
+    "category": "restaurant",
+    "lat": 14.5849225,
+    "lon": 120.9740489
+  },
+  {
+    "id": "osm-node-6419890485",
+    "name": "7-Eleven",
+    "category": "place",
+    "lat": 14.5848125,
+    "lon": 120.973791
+  },
+  {
+    "id": "osm-node-6430630955",
+    "name": "Order of the Knights of Rizal",
+    "category": "memorial",
+    "lat": 14.5898974,
+    "lon": 120.9709963
+  },
+  {
+    "id": "osm-node-6430630956",
+    "name": "Claudio S. Teehankee: 1918–1989",
+    "category": "memorial",
+    "lat": 14.5898946,
+    "lon": 120.9710113
+  },
+  {
+    "id": "osm-node-6630882656",
+    "name": "Moonleaf",
+    "category": "cafe",
+    "lat": 14.5892844,
+    "lon": 120.9781466
+  },
+  {
+    "id": "osm-node-6630882658",
+    "name": "Cioccolata",
+    "category": "cafe",
+    "lat": 14.5898658,
+    "lon": 120.9788274
+  },
+  {
+    "id": "osm-node-6778520887",
+    "name": "608 Boarding House",
+    "category": "guest_house",
+    "lat": 14.5888329,
+    "lon": 120.9768365
+  },
+  {
+    "id": "osm-node-6794128986",
+    "name": "La Cathedral Cafe",
+    "category": "cafe",
+    "lat": 14.5912312,
+    "lon": 120.9741211
+  },
+  {
+    "id": "osm-node-6861858988",
+    "name": "7-Eleven",
+    "category": "place",
+    "lat": 14.5967236,
+    "lon": 120.9738241
+  },
+  {
+    "id": "osm-node-7006051820",
+    "name": "BPI",
+    "category": "atm",
+    "lat": 14.5886825,
+    "lon": 120.9686026
+  },
+  {
+    "id": "osm-node-7006051821",
+    "name": "BPI",
+    "category": "bank",
+    "lat": 14.588688,
+    "lon": 120.9686083
+  },
+  {
+    "id": "osm-node-7022731494",
+    "name": "Intramuros Police Community Precinct",
+    "category": "police",
+    "lat": 14.5873532,
+    "lon": 120.9788247
+  },
+  {
+    "id": "osm-node-7042637138",
+    "name": "Jham Bikeshop",
+    "category": "place",
+    "lat": 14.5890915,
+    "lon": 120.968806
+  },
+  {
+    "id": "osm-node-7042643533",
+    "name": "Sam's Bicycle Shop",
+    "category": "place",
+    "lat": 14.5891377,
+    "lon": 120.9688552
+  },
+  {
+    "id": "osm-node-7086356886",
+    "name": "Positibong Marino Philippines Inc.",
+    "category": "social_facility",
+    "lat": 14.5894446,
+    "lon": 120.9763462
+  },
+  {
+    "id": "osm-node-7123901186",
+    "name": "American Out Patient Clinic",
+    "category": "clinic",
+    "lat": 14.592982,
+    "lon": 120.973162
+  },
+  {
+    "id": "osm-node-7138594047",
+    "name": "Bataka Bar",
+    "category": "bar",
+    "lat": 14.589301,
+    "lon": 120.9753194
+  },
+  {
+    "id": "osm-node-7142353791",
+    "name": "Figaro",
+    "category": "cafe",
+    "lat": 14.5931329,
+    "lon": 120.9733493
+  },
+  {
+    "id": "osm-node-7324832748",
+    "name": "Lawton",
+    "category": "ferry_terminal",
+    "lat": 14.5957803,
+    "lon": 120.9814485
+  },
+  {
+    "id": "osm-node-7439983319",
+    "name": "Overseas Filipino Bank",
+    "category": "bank",
+    "lat": 14.5951811,
+    "lon": 120.978063
+  },
+  {
+    "id": "osm-node-7535856086",
+    "name": "JJN Junkshop",
+    "category": "recycling",
+    "lat": 14.5897804,
+    "lon": 120.968435
+  },
+  {
+    "id": "osm-node-7535856087",
+    "name": "Machado Junkshop",
+    "category": "recycling",
+    "lat": 14.5888001,
+    "lon": 120.9701403
+  },
+  {
+    "id": "osm-node-7546628490",
+    "name": "Earth Care Advocay Cooperative",
+    "category": "recycling",
+    "lat": 14.5906342,
+    "lon": 120.9727415
+  },
+  {
+    "id": "osm-node-7546714385",
+    "name": "Port Area MRF",
+    "category": "recycling",
+    "lat": 14.5937481,
+    "lon": 120.9682687
+  },
+  {
+    "id": "osm-node-7546867087",
+    "name": "Department of Labor and Employment MRF",
+    "category": "recycling",
+    "lat": 14.5870138,
+    "lon": 120.977827
+  },
+  {
+    "id": "osm-node-7555693500",
+    "name": "PCSO Lotto",
+    "category": "place",
+    "lat": 14.5879448,
+    "lon": 120.9776634
+  },
+  {
+    "id": "osm-node-7604721311",
+    "name": "Red Jade",
+    "category": "restaurant",
+    "lat": 14.583464,
+    "lon": 120.9740351
+  },
+  {
+    "id": "osm-node-7629254794",
+    "name": "1919 Grand Cafe",
+    "category": "restaurant",
+    "lat": 14.5965723,
+    "lon": 120.9756259
+  },
+  {
+    "id": "osm-node-7726827487",
+    "name": "Barangay 657 Zone 70 Barangay Hall",
+    "category": "townhall",
+    "lat": 14.5890112,
+    "lon": 120.9780436
+  },
+  {
+    "id": "osm-node-7726827488",
+    "name": "1934-1935 Constitutional Convention",
+    "category": "memorial",
+    "lat": 14.5869301,
+    "lon": 120.9809327
+  },
+  {
+    "id": "osm-node-7726827490",
+    "name": "Manuel L. Quezon",
+    "category": "memorial",
+    "lat": 14.58842,
+    "lon": 120.9818584
+  },
+  {
+    "id": "osm-node-7726827491",
+    "name": "City Hall Building",
+    "category": "memorial",
+    "lat": 14.5884025,
+    "lon": 120.981792
+  },
+  {
+    "id": "osm-node-7726827492",
+    "name": "Arsenio Hilario Lacson",
+    "category": "memorial",
+    "lat": 14.588261,
+    "lon": 120.9818637
+  },
+  {
+    "id": "osm-node-7726827493",
+    "name": "Battle of Manila",
+    "category": "memorial",
+    "lat": 14.5880183,
+    "lon": 120.9818761
+  },
+  {
+    "id": "osm-node-7726827494",
+    "name": "Hunters ROTC Guerillas",
+    "category": "memorial",
+    "lat": 14.5880177,
+    "lon": 120.9819006
+  },
+  {
+    "id": "osm-node-7732752238",
+    "name": "Francisca del Espiritu Santo",
+    "category": "artwork",
+    "lat": 14.5938379,
+    "lon": 120.977342
+  },
+  {
+    "id": "osm-node-7738544315",
+    "name": "Japanese Cannon",
+    "category": "attraction",
+    "lat": 14.5857119,
+    "lon": 120.9762247
+  },
+  {
+    "id": "osm-node-7740393871",
+    "name": "Church of San Agustin",
+    "category": "memorial",
+    "lat": 14.5892162,
+    "lon": 120.9752101
+  },
+  {
+    "id": "osm-node-7740393872",
+    "name": "World Heritage Site San Agustin Church",
+    "category": "memorial",
+    "lat": 14.5892388,
+    "lon": 120.9752139
+  },
+  {
+    "id": "osm-node-7743018310",
+    "name": "Philippine Post Office",
+    "category": "memorial",
+    "lat": 14.5953224,
+    "lon": 120.979134
+  },
+  {
+    "id": "osm-node-7791922061",
+    "name": "The Mehan Garden",
+    "category": "memorial",
+    "lat": 14.5922153,
+    "lon": 120.9807992
+  },
+  {
+    "id": "osm-node-8317870119",
+    "name": "Victoria Park",
+    "category": "place",
+    "lat": 14.5911622,
+    "lon": 120.9796251
+  },
+  {
+    "id": "osm-node-8439914691",
+    "name": "Bantayog ng Gomburza",
+    "category": "memorial",
+    "lat": 14.5873915,
+    "lon": 120.9803605
+  },
+  {
+    "id": "osm-node-8999362660",
+    "name": "Jose Abad Santos y Barce (1886–1942)",
+    "category": "memorial",
+    "lat": 14.5969635,
+    "lon": 120.9723502
+  },
+  {
+    "id": "osm-node-9495580907",
+    "name": "Doggo Alley",
+    "category": "place",
+    "lat": 14.596706,
+    "lon": 120.973771
+  },
+  {
+    "id": "osm-node-9785549707",
+    "name": "Belfry Café",
+    "category": "cafe",
+    "lat": 14.5919097,
+    "lon": 120.973632
+  },
+  {
+    "id": "osm-node-9889395406",
+    "name": "PowerTechnic Lighting Inc.",
+    "category": "place",
+    "lat": 14.5964139,
+    "lon": 120.9718285
+  },
+  {
+    "id": "osm-node-9897740012",
+    "name": "BPI",
+    "category": "bank",
+    "lat": 14.5967371,
+    "lon": 120.9772263
+  },
+  {
+    "id": "osm-node-9897807020",
+    "name": "UnionBank",
+    "category": "bank",
+    "lat": 14.596881,
+    "lon": 120.9775684
+  },
+  {
+    "id": "osm-node-9897807021",
+    "name": "Bon Appetea",
+    "category": "cafe",
+    "lat": 14.596954,
+    "lon": 120.9776849
+  },
+  {
+    "id": "osm-node-9953738858",
+    "name": "Ho Chi Minh",
+    "category": "artwork",
+    "lat": 14.5928626,
+    "lon": 120.9780453
+  },
+  {
+    "id": "osm-node-9953742723",
+    "name": "José Rizal",
+    "category": "artwork",
+    "lat": 14.5924745,
+    "lon": 120.9783832
+  },
+  {
+    "id": "osm-node-9953742724",
+    "name": "Kaysone Phomvihane",
+    "category": "artwork",
+    "lat": 14.5932355,
+    "lon": 120.9780021
+  },
+  {
+    "id": "osm-node-9958355127",
+    "name": "Philippine Youhao International Travel Service",
+    "category": "place",
+    "lat": 14.596468,
+    "lon": 120.9744513
+  },
+  {
+    "id": "osm-node-9958355128",
+    "name": "PNB",
+    "category": "atm",
+    "lat": 14.5963934,
+    "lon": 120.9744567
+  },
+  {
+    "id": "osm-node-10148591104",
+    "name": "Miguel de Benavides",
+    "category": "memorial",
+    "lat": 14.5927625,
+    "lon": 120.9744716
+  },
+  {
+    "id": "osm-node-10148591105",
+    "name": "Unibersidad ng Santo Tomas",
+    "category": "memorial",
+    "lat": 14.5929505,
+    "lon": 120.9746869
+  },
+  {
+    "id": "osm-node-10168006689",
+    "name": "Casa Marinero",
+    "category": "restaurant",
+    "lat": 14.5890101,
+    "lon": 120.9759176
+  },
+  {
+    "id": "osm-node-10173344617",
+    "name": "Balai Maria",
+    "category": "restaurant",
+    "lat": 14.5908277,
+    "lon": 120.9732675
+  },
+  {
+    "id": "osm-node-10243714050",
+    "name": "Puerta de Isabel II",
+    "category": "attraction",
+    "lat": 14.5941498,
+    "lon": 120.9762525
+  },
+  {
+    "id": "osm-node-10253170518",
+    "name": "Jose Felipe del Pan (1821–1891)",
+    "category": "memorial",
+    "lat": 14.5918335,
+    "lon": 120.9727515
+  },
+  {
+    "id": "osm-node-10699319606",
+    "name": "Casa Manila",
+    "category": "attraction",
+    "lat": 14.5897328,
+    "lon": 120.9752501
+  },
+  {
+    "id": "osm-node-10769040895",
+    "name": "Globe Statue",
+    "category": "artwork",
+    "lat": 14.5947108,
+    "lon": 120.9796545
+  },
+  {
+    "id": "osm-node-10769040896",
+    "name": "History Marker",
+    "category": "artwork",
+    "lat": 14.5944286,
+    "lon": 120.9785593
+  },
+  {
+    "id": "osm-node-10769040897",
+    "name": "Rooster Statue",
+    "category": "artwork",
+    "lat": 14.5943683,
+    "lon": 120.9790187
+  },
+  {
+    "id": "osm-node-10917227317",
+    "name": "Quinta",
+    "category": "ferry_terminal",
+    "lat": 14.5959362,
+    "lon": 120.982212
+  },
+  {
+    "id": "osm-node-11206884178",
+    "name": "RCBC",
+    "category": "bank",
+    "lat": 14.5848723,
+    "lon": 120.972763
+  },
+  {
+    "id": "osm-node-11444857324",
+    "name": "Blumentritt-Quiapo-North Harbor Transport Dyip",
+    "category": "shelter",
+    "lat": 14.5833521,
+    "lon": 120.975896
+  },
+  {
+    "id": "osm-node-11472434982",
+    "name": "Fort Santiago",
+    "category": "memorial",
+    "lat": 14.5927907,
+    "lon": 120.9716745
+  },
+  {
+    "id": "osm-node-11495010172",
+    "name": "The Manila Times",
+    "category": "memorial",
+    "lat": 14.5934355,
+    "lon": 120.9737321
+  },
+  {
+    "id": "osm-node-11521200457",
+    "name": "Cafe Sofia",
+    "category": "restaurant",
+    "lat": 14.5877563,
+    "lon": 120.9768356
+  },
+  {
+    "id": "osm-node-11592235451",
+    "name": "Landbank",
+    "category": "bank",
+    "lat": 14.5858671,
+    "lon": 120.972816
+  },
+  {
+    "id": "osm-node-11602429223",
+    "name": "Roman Catholic Cathedral of Manila",
+    "category": "memorial",
+    "lat": 14.591835,
+    "lon": 120.9733458
+  },
+  {
+    "id": "osm-node-11710850481",
+    "name": "Cafe Intramuros",
+    "category": "cafe",
+    "lat": 14.5896171,
+    "lon": 120.9750097
+  },
+  {
+    "id": "osm-node-11710850482",
+    "name": "Cold Treats",
+    "category": "fast_food",
+    "lat": 14.5896723,
+    "lon": 120.9750724
+  },
+  {
+    "id": "osm-node-11710850483",
+    "name": "Batala Bar",
+    "category": "bar",
+    "lat": 14.58957,
+    "lon": 120.97506
+  },
+  {
+    "id": "osm-node-11710850484",
+    "name": "Tesoros",
+    "category": "restaurant",
+    "lat": 14.5895848,
+    "lon": 120.9750423
+  },
+  {
+    "id": "osm-node-11715967869",
+    "name": "Solidum Vulcanzing",
+    "category": "place",
+    "lat": 14.590146,
+    "lon": 120.975636
+  },
+  {
+    "id": "osm-node-11724515223",
+    "name": "Homeless Jesus",
+    "category": "artwork",
+    "lat": 14.5919919,
+    "lon": 120.9735123
+  },
+  {
+    "id": "osm-node-11729816000",
+    "name": "PBCOM",
+    "category": "bank",
+    "lat": 14.5912274,
+    "lon": 120.9743605
+  },
+  {
+    "id": "osm-node-11729816001",
+    "name": "MK Cookies & Pastries",
+    "category": "place",
+    "lat": 14.5914242,
+    "lon": 120.9741374
+  },
+  {
+    "id": "osm-node-11729816002",
+    "name": "Laiko Souvenir Shop",
+    "category": "place",
+    "lat": 14.5919411,
+    "lon": 120.9740534
+  },
+  {
+    "id": "osm-node-11729816003",
+    "name": "Parers Kimchi",
+    "category": "restaurant",
+    "lat": 14.5919625,
+    "lon": 120.974531
+  },
+  {
+    "id": "osm-node-11729816004",
+    "name": "Cafe Janealo",
+    "category": "cafe",
+    "lat": 14.5916703,
+    "lon": 120.9744016
+  },
+  {
+    "id": "osm-node-11729816009",
+    "name": "Museum of the Chinese in Philippine Life",
+    "category": "museum",
+    "lat": 14.590901,
+    "lon": 120.9750357
+  },
+  {
+    "id": "osm-node-11729826410",
+    "name": "Asian Favorites Food Mart",
+    "category": "place",
+    "lat": 14.5917728,
+    "lon": 120.9748848
+  },
+  {
+    "id": "osm-node-11729826412",
+    "name": "Bayad Center",
+    "category": "payment_centre",
+    "lat": 14.5922035,
+    "lon": 120.9749434
+  },
+  {
+    "id": "osm-node-11729826414",
+    "name": "Adam's Tailoring",
+    "category": "place",
+    "lat": 14.5921844,
+    "lon": 120.9747459
+  },
+  {
+    "id": "osm-node-12079650665",
+    "name": "PNB",
+    "category": "bank",
+    "lat": 14.5926728,
+    "lon": 120.9727805
+  },
+  {
+    "id": "osm-node-12080270984",
+    "name": "Bank of Commerce",
+    "category": "bank",
+    "lat": 14.5931909,
+    "lon": 120.9734094
+  },
+  {
+    "id": "osm-node-12080270985",
+    "name": "Asia United Bank",
+    "category": "bank",
+    "lat": 14.5932337,
+    "lon": 120.9734503
+  },
+  {
+    "id": "osm-node-12080270986",
+    "name": "Metrobank",
+    "category": "atm",
+    "lat": 14.593004,
+    "lon": 120.9731928
+  },
+  {
+    "id": "osm-node-12080270987",
+    "name": "LBC",
+    "category": "post_office",
+    "lat": 14.5930339,
+    "lon": 120.9732384
+  },
+  {
+    "id": "osm-node-12080270990",
+    "name": "PNB",
+    "category": "atm",
+    "lat": 14.5926278,
+    "lon": 120.9727817
+  },
+  {
+    "id": "osm-node-12092716092",
+    "name": "LBC",
+    "category": "post_office",
+    "lat": 14.5912176,
+    "lon": 120.9701803
+  },
+  {
+    "id": "osm-node-12092718337",
+    "name": "Petron Gasul",
+    "category": "place",
+    "lat": 14.5914962,
+    "lon": 120.9709553
+  },
+  {
+    "id": "osm-node-12272195012",
+    "name": "Starbucks",
+    "category": "cafe",
+    "lat": 14.5967563,
+    "lon": 120.9754884
+  },
+  {
+    "id": "osm-node-12284519950",
+    "name": "Pasig River Esplanade",
+    "category": "attraction",
+    "lat": 14.595868,
+    "lon": 120.9782951
+  },
+  {
+    "id": "osm-node-12374622466",
+    "name": "Plaza Yuchengco",
+    "category": "attraction",
+    "lat": 14.5965523,
+    "lon": 120.977628
+  },
+  {
+    "id": "osm-node-12374634747",
+    "name": "Philippine Native Trees",
+    "category": "information",
+    "lat": 14.5965885,
+    "lon": 120.9777137
+  },
+  {
+    "id": "osm-node-12374860211",
+    "name": "Siar",
+    "category": "place",
+    "lat": 14.5966048,
+    "lon": 120.9776977
+  },
+  {
+    "id": "osm-node-12583335679",
+    "name": "Papa Kape",
+    "category": "cafe",
+    "lat": 14.5946562,
+    "lon": 120.9697355
+  },
+  {
+    "id": "osm-node-12588512019",
+    "name": "Filipino Struggles Through History",
+    "category": "artwork",
+    "lat": 14.5946577,
+    "lon": 120.9739552
+  },
+  {
+    "id": "osm-node-12597662001",
+    "name": "Baluarte de San Diego",
+    "category": "attraction",
+    "lat": 14.5854776,
+    "lon": 120.9756548
+  },
+  {
+    "id": "osm-node-12629977922",
+    "name": "LOVE The Philippines",
+    "category": "artwork",
+    "lat": 14.5951056,
+    "lon": 120.9700983
+  },
+  {
+    "id": "osm-node-12802006503",
+    "name": "Los Frailes Cafe",
+    "category": "cafe",
+    "lat": 14.5893586,
+    "lon": 120.9747584
+  },
+  {
+    "id": "osm-node-12803663501",
+    "name": "Grotto Hookah Lounge",
+    "category": "cafe",
+    "lat": 14.5916991,
+    "lon": 120.974185
+  },
+  {
+    "id": "osm-node-12928095701",
+    "name": "Batala",
+    "category": "ice_cream",
+    "lat": 14.5873177,
+    "lon": 120.9776349
+  },
+  {
+    "id": "osm-node-12964678513",
+    "name": "Pacific Commercial Company Building",
+    "category": "memorial",
+    "lat": 14.5961143,
+    "lon": 120.9760776
+  },
+  {
+    "id": "osm-node-13142574302",
+    "name": "Bigbrew Central",
+    "category": "cafe",
+    "lat": 14.5924583,
+    "lon": 120.9816612
+  },
+  {
+    "id": "osm-node-13142574303",
+    "name": "Siomai House",
+    "category": "fast_food",
+    "lat": 14.5924732,
+    "lon": 120.9817705
+  },
+  {
+    "id": "osm-node-13142574304",
+    "name": "Shawarma Shack",
+    "category": "fast_food",
+    "lat": 14.5923859,
+    "lon": 120.9816887
+  },
+  {
+    "id": "osm-node-13197462026",
+    "name": "Biblioteca Miguel Hernández",
+    "category": "library",
+    "lat": 14.5898539,
+    "lon": 120.9754026
+  },
+  {
+    "id": "osm-node-13197462028",
+    "name": "7-Eleven",
+    "category": "place",
+    "lat": 14.5897266,
+    "lon": 120.9746481
+  },
+  {
+    "id": "osm-node-13197462029",
+    "name": "Palawan Pawnshop",
+    "category": "place",
+    "lat": 14.5931353,
+    "lon": 120.9732347
+  },
+  {
+    "id": "osm-node-13197462030",
+    "name": "Manila Canvas",
+    "category": "place",
+    "lat": 14.5927274,
+    "lon": 120.971209
+  },
+  {
+    "id": "osm-node-13197462031",
+    "name": "Chamber Café",
+    "category": "cafe",
+    "lat": 14.592713,
+    "lon": 120.9711774
+  },
+  {
+    "id": "osm-node-13200873501",
+    "name": "Morbai Charts/Maps and Maritime Supplies",
+    "category": "place",
+    "lat": 14.5907748,
+    "lon": 120.9735733
+  },
+  {
+    "id": "osm-node-13208384185",
+    "name": "Sky Deck View Bar",
+    "category": "bar",
+    "lat": 14.5899413,
+    "lon": 120.9787349
+  },
+  {
+    "id": "osm-node-13288123746",
+    "name": "Manila Bulletin",
+    "category": "memorial",
+    "lat": 14.5882674,
+    "lon": 120.9785439
+  },
+  {
+    "id": "osm-node-13288123747",
+    "name": "Simbahan at Kumbento ng Recoletos",
+    "category": "memorial",
+    "lat": 14.5885976,
+    "lon": 120.9786965
+  },
+  {
+    "id": "osm-node-13300824401",
+    "name": "J's Cuisine",
+    "category": "restaurant",
+    "lat": 14.5930723,
+    "lon": 120.9771827
+  },
+  {
+    "id": "osm-node-13395196321",
+    "name": "Tanlimco Bros., Inc.",
+    "category": "place",
+    "lat": 14.5967442,
+    "lon": 120.9774321
+  },
+  {
+    "id": "osm-node-13503266000",
+    "name": "Miguel Hidalgo",
+    "category": "memorial",
+    "lat": 14.5880029,
+    "lon": 120.9730775
+  },
+  {
+    "id": "osm-node-13503292301",
+    "name": "Escuadron Aera de Pelea 201 (Aguilas Aztecas)",
+    "category": "memorial",
+    "lat": 14.5880496,
+    "lon": 120.9730281
+  },
+  {
+    "id": "osm-node-13674455575",
+    "name": "Starbucks",
+    "category": "cafe",
+    "lat": 14.5926425,
+    "lon": 120.9720046
+  },
+  {
+    "id": "osm-node-13812139732",
+    "name": "Gedli",
+    "category": "cafe",
+    "lat": 14.5959709,
+    "lon": 120.973911
+  },
+  {
+    "id": "osm-node-13850123701",
+    "name": "La Events Cafe",
+    "category": "cafe",
+    "lat": 14.5924741,
+    "lon": 120.9713402
+  },
+  {
+    "id": "osm-node-13937795759",
+    "name": "Padre Jose A. Burgos",
+    "category": "memorial",
+    "lat": 14.5920111,
+    "lon": 120.9738071
+  },
+  {
+    "id": "osm-node-13961266716",
+    "name": "Dambana ng Kalayaan",
+    "category": "memorial",
+    "lat": 14.5942693,
+    "lon": 120.9704587
+  }
+]

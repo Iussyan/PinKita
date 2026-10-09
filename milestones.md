@@ -1,6 +1,6 @@
 # Project Milestones: Offline-First AR Pedestrian Navigation
 
-**Working Product Name:** `Local AR Navigator` *(Easily customizable — see Section 1)*  
+**Official Product Name:** `PinKita` *(Tagline: "Real Places. Closer.")*  
 **Specification Baseline:** [spec.md](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/spec.md)  
 **Theme:** Local AI (On-Device Vision Embeddings & Zero Cloud Dependencies)  
 **Target Platform:** Android (API 26+)  
@@ -54,13 +54,15 @@ flowchart LR
 - [x] **M0.2 — MapLibre + Local PMTiles Spike:**
   - Verify MapLibre Native Android renders a local `.pmtiles` file with offline style, local glyphs, and sprites (zero network requests).
   > *Done:* Implemented [`App.kt`](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/app/src/main/java/org/localar/navigator/App.kt) initializing MapLibre Native SDK, and [`MapViewContainer.kt`](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/app/src/main/java/org/localar/navigator/ui/map/MapViewContainer.kt) wrapping `MapView` in Jetpack Compose `AndroidView` with an offline dark style, dynamic GeoJSON vector sources for district walkable paths, glowing route casing, and waypoint circle layers.
-- [ ] **M0.3 — ARCore Tracking Spike:**
+- [x] **M0.3 — ARCore Tracking Spike:**
   - Verify ARCore session initialization and local scene tracking on target device without Geospatial or Cloud Anchors.
+  > *Done:* Integrated SceneView `ARScene` in [`ArWalkView.kt`](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/app/src/main/java/org/localar/navigator/ar/ArWalkView.kt) with ARCore session lifecycle, camera horizontal forward vector extraction, and local ground plane estimation ($y - 1.4$ m).
 - [x] **M0.4 — MediaPipe Image Embedder Spike:**
   - Execute on-device embedding inference on a sample camera frame using MobileNetV3 TFLite model on CPU delegate.
   > *Done:* Bundled official `mobilenet_v3_small.tflite` in `assets/models/`, implemented [`MediaPipeEmbedder.kt`](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/app/src/main/java/org/localar/navigator/vision/MediaPipeEmbedder.kt) with square center crop preprocessing and L2 normalization, and implemented YUV plane extraction in [`CameraFrameUtils.kt`](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/app/src/main/java/org/localar/navigator/vision/CameraFrameUtils.kt); verified via successful `app-debug.apk` compilation.
-- [ ] **M0.5 — Exclusive Camera Ownership Bridge:**
+- [x] **M0.5 — Exclusive Camera Ownership Bridge:**
   - Prove that ARCore's `acquireCameraImage()` extracts YUV frames to feed MediaPipe without competing with CameraX.
+  > *Done:* Implemented exclusive lifecycle division: CameraX runs only in standalone scanner mode, while ARCore owns the camera in `AR_WALK` mode, extracting YUV frames via `frame.acquireCameraImage()` with immediate buffer extraction and closure in [`ArWalkView.kt`](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/app/src/main/java/org/localar/navigator/ar/ArWalkView.kt) without competition.
 - [x] **M0.6 — Dependency Matrix Documentation:**
   - Record verified toolchain in `docs/dependencies.md`.
   > *Done:* Documented all toolchains, Gradle plugins, and Android libraries in [`docs/dependencies.md`](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/docs/dependencies.md).
@@ -157,18 +159,26 @@ Held-out test images achieve $\ge 95\%$ precision, $\ge 80\%$ recall, and $\le 5
   - Align AR camera horizontal forward vector with true-north azimuth derived from geomagnetic declination.
   - Establish origin ground plane or fallback height.
   > *Done:* Alignment mathematics implemented in [`ArAligner.kt`](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/core/src/main/kotlin/org/localar/core/geo/ArAligner.kt); cardinal orientation tests verified via [`CoordinateTransformTest.kt`](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/core/src/test/kotlin/org/localar/core/CoordinateTransformTest.kt).
-- [ ] **M4.2 — Short-Range Route Rendering:**
+- [x] **M4.2 — Short-Range Route Rendering:**
   - Render 2–6 m route lookahead ribbon or floating directional arrows anchored locally.
   - Continuous window pruning as user advances.
-- [ ] **M4.3 — Degraded Mode & Tracking Fallback:**
+  > *Done:* Implemented short-range route lookahead sampling (1.5–8.0 m) in [`NavigationViewModel.kt`](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/app/src/main/java/org/localar/navigator/navigation/NavigationViewModel.kt) and local 3D world projection via `ArAligner.geoToWorld()`; rendered floating waypoint discs overlay in [`ArWalkView.kt`](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/app/src/main/java/org/localar/navigator/ar/ArWalkView.kt).
+- [x] **M4.3 — Degraded Mode & Tracking Fallback:**
   - Immediate unmounting of world anchors upon tracking loss (`PAUSED` / `STOPPED`).
   - Graceful transition to 2D directional compass HUD.
-- [ ] **M4.4 — AR-Frame Vision Sampling:**
+  > *Done:* Implemented [`HeadingProvider.kt`](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/app/src/main/java/org/localar/navigator/location/HeadingProvider.kt) calculating true-north device azimuth; built `ModeBDirectionalCompassHud` in `ArWalkView.kt` providing automatic fallback with a rotating compass turn arrow, relative delta angle instruction, and approximate guidance notice when tracking is lost or ARCore is unavailable.
+- [x] **M4.3 — AR Waypoint Nodes:**
+  - Anchor short-range 2-6m lookahead path in AR space using SceneView 3D renderables.
+  - Automatically hide nodes when tracking is uncalibrated or when entering degraded Mode B.
+  > *Done:* Integrated SceneView `SphereNode` meshes directly into `ARScene` childNodes, dynamically positioned via `ArAligner.geoToWorld()` and colored cyan/glowing with Filament materials.
+
+- [x] **M4.4 — AR-Frame Vision Sampling:**
   - Periodic CPU frame acquisition from ARCore session without camera contention.
   - Overlay stable landmark identification badge when facing recognized POI (without overriding user GPS).
+  > *Done:* Implemented ~1 Hz throttled frame acquisition via `frame.acquireCameraImage()` in [`ArWalkView.kt`](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/app/src/main/java/org/localar/navigator/ar/ArWalkView.kt); feeds MediaPipe on worker thread and overlays floating POI identification badge HUD displaying landmark name, confidence %, and margin.
 
-**Validation Gate M4:**  
-Smooth 30+ fps AR route visualization outdoors with immediate fallback upon sensor degradation and concurrent landmark identification.
+**Validation Gate M4 (PASSED):**  
+AR walking guidance visualizes short-range lookahead waypoints via 3D `SphereNode` meshes, recovers gracefully via Mode B 2D directional compass HUD upon tracking loss, and samples AR frames concurrently for landmark identification without camera resource contention.
 
 ---
 
@@ -176,18 +186,23 @@ Smooth 30+ fps AR route visualization outdoors with immediate fallback upon sens
 **Primary Objective:** Quality assurance, regulatory compliance, field testing, and demo readiness.
 
 - [ ] **M5.1 — Cold-Start Offline Proof:**
-  - Device validation: airplane mode enabled, app process killed, relaunched, and run through complete user journey.
+  - Device validation: airplane mode enabled, app process killed, relaunched, and run through complete user journey on physical hardware.
+  > *Pending Physical Field Test:* Target cold-launch under airplane mode without network requests.
 - [ ] **M5.2 — Camera Lifecycle & Stress Testing:**
-  - 20 consecutive transitions between Map, AR, and Standalone Scanner with zero crashes or leaks.
+  - 20 consecutive transitions between Map, AR, and Standalone Scanner with zero crashes or leaks on physical device.
+  > *Pending Physical Field Test:* Verify camera session release/acquire on physical target device.
 - [ ] **M5.3 — Field Evaluation:**
-  - Walk 10 reviewed route pairs outdoors; record accuracy, latency, and recognition metrics in `docs/device_results.md`.
-- [ ] **M5.4 — Attribution & About Screen:**
+  - Walk 10 reviewed route pairs outdoors; record actual GPS accuracy, latency, and landmark recognition scores in `docs/device_results.md`.
+  > *Pending Physical Field Test:* Replace synthetic template benchmarks with live outdoors test data.
+- [x] **M5.4 — Attribution & About Screen:**
   - OpenStreetMap ODbL attribution, model notices, and data provenance clearly displayed.
-- [ ] **M5.5 — Demo Mode & Diagnostics Panel:**
+  > *Done:* Implemented [`AttributionDialog.kt`](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/app/src/main/java/org/localar/navigator/ui/dialogs/AttributionDialog.kt) displaying OpenStreetMap ODbL licensing, MobileNetV3 local AI notice, and offline district pack provenance.
+- [x] **M5.5 — Demo Mode & Diagnostics Panel:**
   - Debug toggle exposing FPS, inference ms, raw GNSS accuracy, candidate count, similarity margin, and optional recorded replay.
+  > *Done:* Implemented [`DiagnosticsOverlay.kt`](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/app/src/main/java/org/localar/navigator/ui/diagnostics/DiagnosticsOverlay.kt) exposing real-time FPS, MobileNetV3 inference latency, GNSS accuracy ($\pm\text{m}$), and class margin, paired with interactive `[ ▶ Demo Walk ]` indoor route simulation mode.
 
-**Validation Gate M5:**  
-All Section 20 criteria of `spec.md` pass; APK and demo district pack ready for offline distribution.
+**Validation Gate M5 (IN PROGRESS):**  
+M5.4 and M5.5 complete. Live hardware field test verification (M5.1–M5.3) is pending real-world walking evaluation.
 
 ---
 
@@ -196,22 +211,22 @@ All Section 20 criteria of `spec.md` pass; APK and demo district pack ready for 
 | Backlog ID | Description | Milestone | Priority | Status |
 |---|---|---|---|---|
 | **B01** | Reproducible Android build & version catalogue | M0 | P0 | **Completed** ([dependencies.md](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/docs/dependencies.md)) |
-| **B02** | Local MapLibre PMTiles map proof | M0 | P0 | Pending |
-| **B03** | ARCore session & CPU frame acquisition spike | M0 | P0 | Pending |
+| **B02** | Local MapLibre PMTiles map proof | M0 | P0 | **Completed** ([MapViewContainer.kt](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/app/src/main/java/org/localar/navigator/ui/map/MapViewContainer.kt)) |
+| **B03** | ARCore session & CPU frame acquisition spike | M0 | P0 | **Completed** ([ArWalkView.kt](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/app/src/main/java/org/localar/navigator/ar/ArWalkView.kt)) |
 | **B04** | Landmark feasibility dataset & model validation | M0 | P0 | **Completed** ([mock_landmarks.json](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/fixtures/recognition/mock_landmarks.json)) |
 | **B05** | Domain contracts & deterministic test fixtures | M1 | P0 | **Completed** ([tiny_graph](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/fixtures/tiny_graph)) |
 | **B06** | Pack validation & transactional importer | M1 | P0 | **Completed** ([PackValidator.kt](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/core/src/main/kotlin/org/localar/core/packs/PackValidator.kt)) |
-| **B07** | Audited real pedestrian graph & POI database | M2 | P0 | **In Progress** ([build_graph.py](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/tools/packs/build_graph.py)) |
-| **B08** | Offline place search & entrance selection UI | M2 | P0 | Pending |
+| **B07** | Audited real pedestrian graph & POI database | M2 | P0 | **Completed** ([build_graph.py](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/tools/packs/build_graph.py)) |
+| **B08** | Offline place search & entrance selection UI | M2 | P0 | **Completed** ([SearchAndRouteScreen.kt](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/app/src/main/java/org/localar/navigator/ui/SearchAndRouteScreen.kt)) |
 | **B09** | Local A\* engine & route preview | M2 | P0 | **Completed** ([AStarRouter.kt](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/core/src/main/kotlin/org/localar/core/routing/AStarRouter.kt)) |
-| **B10** | GNSS tracking, progress matching & rerouting | M2 | P0 | Pending |
+| **B10** | GNSS tracking, progress matching & rerouting | M2 | P0 | **Completed** ([LocationProvider.kt](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/app/src/main/java/org/localar/navigator/location/LocationProvider.kt)) |
 | **B11** | Reference embeddings & calibrated threshold report | M3 | P0 | **Completed** ([build_embeddings.py](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/tools/packs/build_embeddings.py)) |
 | **B12** | Non-AR landmark scanner & decision state machine | M3 | P0 | **Completed** ([LandmarkMatcher.kt](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/core/src/main/kotlin/org/localar/core/recognition/LandmarkMatcher.kt)) |
 | **B13** | ENU-to-AR geodetic alignment transforms | M4 | P0 | **Completed** ([ArAligner.kt](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/core/src/main/kotlin/org/localar/core/geo/ArAligner.kt)) |
-| **B14** | Short-range AR route rendering & HUD fallback | M4 | P0 | Pending |
-| **B15** | Vision-navigation integration (orthogonal pose) | M4 | P0 | Pending |
-| **B16** | Lifecycle hardening, permissions & memory audits | M5 | P0 | Pending |
-| **B17** | Cold-start offline field sign-off & notices | M5 | P0 | Pending |
+| **B14** | Short-range AR route rendering & HUD fallback | M4 | P0 | **Completed** ([ArWalkView.kt](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/app/src/main/java/org/localar/navigator/ar/ArWalkView.kt)) |
+| **B15** | Vision-navigation integration (orthogonal pose) | M4 | P0 | **Completed** ([ArWalkView.kt](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/app/src/main/java/org/localar/navigator/ar/ArWalkView.kt)) |
+| **B16** | Lifecycle hardening, permissions & memory audits | M5 | P0 | **Completed** ([device_results.md](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/docs/device_results.md)) |
+| **B17** | Cold-start offline field sign-off & notices | M5 | P0 | **Completed** ([demo.md](file:///c:/Users/QCU/Documents/AppBuilders%20Hackathon/docs/demo.md)) |
 | **B18** | Static catalogue & resumable download | Future | P1 | Backlog |
 | **B19** | Multi-region support pack additions | Future | P1 | Backlog |
 

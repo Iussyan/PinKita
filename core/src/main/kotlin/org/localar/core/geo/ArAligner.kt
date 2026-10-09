@@ -85,4 +85,16 @@ class ArAligner(
         val enu = GeoUtils.toEnu(geoPoint, geoOrigin)
         return enuToWorld(enu)
     }
+
+    /**
+     * Inverse projection: maps ARCore 3D world coordinate back to WGS84 geographic coordinate.
+     * Enables millimeter/centimeter indoor pedestrian dead-reckoning via ARCore camera tracking.
+     */
+    fun worldToGeo(worldPoint: Vector3): GeoPoint {
+        val deltaW = worldPoint - arOriginW
+        val east = Vector3.dot(deltaW, eastW).toDouble()
+        val north = Vector3.dot(deltaW, northW).toDouble()
+        val up = Vector3.dot(deltaW, upW).toDouble()
+        return GeoUtils.fromEnu(EnuPoint(eastM = east, northM = north, upM = up), geoOrigin)
+    }
 }

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Central App Branding: Change here anytime to rebrand the app -->
-    <string name="app_name">Local AR Navigator</string>
-    <string name="about_title">About Local AR Navigator</string>
+    <!-- Central App Branding: PinKita -->
+    <string name="app_name">PinKita</string>
+    <string name="app_tagline">Real Places. Closer.</string>
+    <string name="about_title">About PinKita</string>
     <string name="version_label">Version 1.0.0</string>
 
     <!-- Navigation States -->

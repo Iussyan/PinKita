@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "model_id": "mobilenetv3-embedder-v1",
+  "default_threshold": 0.7,
+  "landmark_thresholds": {
+    "landmark-skyline-cafe": 0.7,
+    "landmark-city-museum": 0.7,
+    "landmark-central-market": 0.72,
+    "landmark-historic-fountain": 0.72,
+    "landmark-botanical-conservatory": 0.7
+  },
+  "calibrated_margin": 0.08,
+  "temporal_rule": {
+    "window_size": 5,
+    "min_qualifying_frames": 3,
+    "min_span_duration_ms": 1000,
+    "expiry_duration_ms": 3000
+  }
+}

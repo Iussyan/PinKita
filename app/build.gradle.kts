@@ -70,12 +70,14 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.material:material-icons-extended:1.6.8")
     implementation("androidx.activity:activity-compose:1.9.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.3")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.3")
 
     // MapLibre Native Android (Pinned 11.7.0 for local PMTiles support)
     implementation("org.maplibre.gl:android-sdk:11.7.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
     // ARCore & SceneView
     implementation("com.google.ar:core:1.43.0")

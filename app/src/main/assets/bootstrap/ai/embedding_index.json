@@ -1,0 +1,390 @@
+{
+  "schema_version": 1,
+  "model_id": "mobilenetv3-embedder-v1",
+  "model_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "preprocess_id": "rear-camera-center-crop-v1",
+  "dimension": 1024,
+  "vector_count": 76,
+  "rows": [
+    {
+      "row": 0,
+      "landmark_id": "landmark-skyline-cafe",
+      "reference_id": "landmark-skyline-cafe-ref-01"
+    },
+    {
+      "row": 1,
+      "landmark_id": "landmark-skyline-cafe",
+      "reference_id": "landmark-skyline-cafe-ref-02"
+    },
+    {
+      "row": 2,
+      "landmark_id": "landmark-skyline-cafe",
+      "reference_id": "landmark-skyline-cafe-ref-03"
+    },
+    {
+      "row": 3,
+      "landmark_id": "landmark-skyline-cafe",
+      "reference_id": "landmark-skyline-cafe-ref-04"
+    },
+    {
+      "row": 4,
+      "landmark_id": "landmark-skyline-cafe",
+      "reference_id": "landmark-skyline-cafe-ref-05"
+    },
+    {
+      "row": 5,
+      "landmark_id": "landmark-skyline-cafe",
+      "reference_id": "landmark-skyline-cafe-ref-06"
+    },
+    {
+      "row": 6,
+      "landmark_id": "landmark-skyline-cafe",
+      "reference_id": "landmark-skyline-cafe-ref-07"
+    },
+    {
+      "row": 7,
+      "landmark_id": "landmark-skyline-cafe",
+      "reference_id": "landmark-skyline-cafe-ref-08"
+    },
+    {
+      "row": 8,
+      "landmark_id": "landmark-skyline-cafe",
+      "reference_id": "landmark-skyline-cafe-ref-09"
+    },
+    {
+      "row": 9,
+      "landmark_id": "landmark-skyline-cafe",
+      "reference_id": "landmark-skyline-cafe-ref-10"
+    },
+    {
+      "row": 10,
+      "landmark_id": "landmark-skyline-cafe",
+      "reference_id": "landmark-skyline-cafe-ref-11"
+    },
+    {
+      "row": 11,
+      "landmark_id": "landmark-skyline-cafe",
+      "reference_id": "landmark-skyline-cafe-ref-12"
+    },
+    {
+      "row": 12,
+      "landmark_id": "landmark-skyline-cafe",
+      "reference_id": "landmark-skyline-cafe-ref-13"
+    },
+    {
+      "row": 13,
+      "landmark_id": "landmark-skyline-cafe",
+      "reference_id": "landmark-skyline-cafe-ref-14"
+    },
+    {
+      "row": 14,
+      "landmark_id": "landmark-skyline-cafe",
+      "reference_id": "landmark-skyline-cafe-ref-15"
+    },
+    {
+      "row": 15,
+      "landmark_id": "landmark-city-museum",
+      "reference_id": "landmark-city-museum-ref-01"
+    },
+    {
+      "row": 16,
+      "landmark_id": "landmark-city-museum",
+      "reference_id": "landmark-city-museum-ref-02"
+    },
+    {
+      "row": 17,
+      "landmark_id": "landmark-city-museum",
+      "reference_id": "landmark-city-museum-ref-03"
+    },
+    {
+      "row": 18,
+      "landmark_id": "landmark-city-museum",
+      "reference_id": "landmark-city-museum-ref-04"
+    },
+    {
+      "row": 19,
+      "landmark_id": "landmark-city-museum",
+      "reference_id": "landmark-city-museum-ref-05"
+    },
+    {
+      "row": 20,
+      "landmark_id": "landmark-city-museum",
+      "reference_id": "landmark-city-museum-ref-06"
+    },
+    {
+      "row": 21,
+      "landmark_id": "landmark-city-museum",
+      "reference_id": "landmark-city-museum-ref-07"
+    },
+    {
+      "row": 22,
+      "landmark_id": "landmark-city-museum",
+      "reference_id": "landmark-city-museum-ref-08"
+    },
+    {
+      "row": 23,
+      "landmark_id": "landmark-city-museum",
+      "reference_id": "landmark-city-museum-ref-09"
+    },
+    {
+      "row": 24,
+      "landmark_id": "landmark-city-museum",
+      "reference_id": "landmark-city-museum-ref-10"
+    },
+    {
+      "row": 25,
+      "landmark_id": "landmark-city-museum",
+      "reference_id": "landmark-city-museum-ref-11"
+    },
+    {
+      "row": 26,
+      "landmark_id": "landmark-city-museum",
+      "reference_id": "landmark-city-museum-ref-12"
+    },
+    {
+      "row": 27,
+      "landmark_id": "landmark-city-museum",
+      "reference_id": "landmark-city-museum-ref-13"
+    },
+    {
+      "row": 28,
+      "landmark_id": "landmark-city-museum",
+      "reference_id": "landmark-city-museum-ref-14"
+    },
+    {
+      "row": 29,
+      "landmark_id": "landmark-city-museum",
+      "reference_id": "landmark-city-museum-ref-15"
+    },
+    {
+      "row": 30,
+      "landmark_id": "landmark-central-market",
+      "reference_id": "landmark-central-market-ref-01"
+    },
+    {
+      "row": 31,
+      "landmark_id": "landmark-central-market",
+      "reference_id": "landmark-central-market-ref-02"
+    },
+    {
+      "row": 32,
+      "landmark_id": "landmark-central-market",
+      "reference_id": "landmark-central-market-ref-03"
+    },
+    {
+      "row": 33,
+      "landmark_id": "landmark-central-market",
+      "reference_id": "landmark-central-market-ref-04"
+    },
+    {
+      "row": 34,
+      "landmark_id": "landmark-central-market",
+      "reference_id": "landmark-central-market-ref-05"
+    },
+    {
+      "row": 35,
+      "landmark_id": "landmark-central-market",
+      "reference_id": "landmark-central-market-ref-06"
+    },
+    {
+      "row": 36,
+      "landmark_id": "landmark-central-market",
+      "reference_id": "landmark-central-market-ref-07"
+    },
+    {
+      "row": 37,
+      "landmark_id": "landmark-central-market",
+      "reference_id": "landmark-central-market-ref-08"
+    },
+    {
+      "row": 38,
+      "landmark_id": "landmark-central-market",
+      "reference_id": "landmark-central-market-ref-09"
+    },
+    {
+      "row": 39,
+      "landmark_id": "landmark-central-market",
+      "reference_id": "landmark-central-market-ref-10"
+    },
+    {
+      "row": 40,
+      "landmark_id": "landmark-central-market",
+      "reference_id": "landmark-central-market-ref-11"
+    },
+    {
+      "row": 41,
+      "landmark_id": "landmark-central-market",
+      "reference_id": "landmark-central-market-ref-12"
+    },
+    {
+      "row": 42,
+      "landmark_id": "landmark-central-market",
+      "reference_id": "landmark-central-market-ref-13"
+    },
+    {
+      "row": 43,
+      "landmark_id": "landmark-central-market",
+      "reference_id": "landmark-central-market-ref-14"
+    },
+    {
+      "row": 44,
+      "landmark_id": "landmark-central-market",
+      "reference_id": "landmark-central-market-ref-15"
+    },
+    {
+      "row": 45,
+      "landmark_id": "landmark-historic-fountain",
+      "reference_id": "landmark-historic-fountain-ref-01"
+    },
+    {
+      "row": 46,
+      "landmark_id": "landmark-historic-fountain",
+      "reference_id": "landmark-historic-fountain-ref-02"
+    },
+    {
+      "row": 47,
+      "landmark_id": "landmark-historic-fountain",
+      "reference_id": "landmark-historic-fountain-ref-03"
+    },
+    {
+      "row": 48,
+      "landmark_id": "landmark-historic-fountain",
+      "reference_id": "landmark-historic-fountain-ref-04"
+    },
+    {
+      "row": 49,
+      "landmark_id": "landmark-historic-fountain",
+      "reference_id": "landmark-historic-fountain-ref-05"
+    },
+    {
+      "row": 50,
+      "landmark_id": "landmark-historic-fountain",
+      "reference_id": "landmark-historic-fountain-ref-06"
+    },
+    {
+      "row": 51,
+      "landmark_id": "landmark-historic-fountain",
+      "reference_id": "landmark-historic-fountain-ref-07"
+    },
+    {
+      "row": 52,
+      "landmark_id": "landmark-historic-fountain",
+      "reference_id": "landmark-historic-fountain-ref-08"
+    },
+    {
+      "row": 53,
+      "landmark_id": "landmark-historic-fountain",
+      "reference_id": "landmark-historic-fountain-ref-09"
+    },
+    {
+      "row": 54,
+      "landmark_id": "landmark-historic-fountain",
+      "reference_id": "landmark-historic-fountain-ref-10"
+    },
+    {
+      "row": 55,
+      "landmark_id": "landmark-historic-fountain",
+      "reference_id": "landmark-historic-fountain-ref-11"
+    },
+    {
+      "row": 56,
+      "landmark_id": "landmark-historic-fountain",
+      "reference_id": "landmark-historic-fountain-ref-12"
+    },
+    {
+      "row": 57,
+      "landmark_id": "landmark-historic-fountain",
+      "reference_id": "landmark-historic-fountain-ref-13"
+    },
+    {
+      "row": 58,
+      "landmark_id": "landmark-historic-fountain",
+      "reference_id": "landmark-historic-fountain-ref-14"
+    },
+    {
+      "row": 59,
+      "landmark_id": "landmark-historic-fountain",
+      "reference_id": "landmark-historic-fountain-ref-15"
+    },
+    {
+      "row": 60,
+      "landmark_id": "landmark-botanical-conservatory",
+      "reference_id": "landmark-botanical-conservatory-ref-01"
+    },
+    {
+      "row": 61,
+      "landmark_id": "landmark-botanical-conservatory",
+      "reference_id": "landmark-botanical-conservatory-ref-02"
+    },
+    {
+      "row": 62,
+      "landmark_id": "landmark-botanical-conservatory",
+      "reference_id": "landmark-botanical-conservatory-ref-03"
+    },
+    {
+      "row": 63,
+      "landmark_id": "landmark-botanical-conservatory",
+      "reference_id": "landmark-botanical-conservatory-ref-04"
+    },
+    {
+      "row": 64,
+      "landmark_id": "landmark-botanical-conservatory",
+      "reference_id": "landmark-botanical-conservatory-ref-05"
+    },
+    {
+      "row": 65,
+      "landmark_id": "landmark-botanical-conservatory",
+      "reference_id": "landmark-botanical-conservatory-ref-06"
+    },
+    {
+      "row": 66,
+      "landmark_id": "landmark-botanical-conservatory",
+      "reference_id": "landmark-botanical-conservatory-ref-07"
+    },
+    {
+      "row": 67,
+      "landmark_id": "landmark-botanical-conservatory",
+      "reference_id": "landmark-botanical-conservatory-ref-08"
+    },
+    {
+      "row": 68,
+      "landmark_id": "landmark-botanical-conservatory",
+      "reference_id": "landmark-botanical-conservatory-ref-09"
+    },
+    {
+      "row": 69,
+      "landmark_id": "landmark-botanical-conservatory",
+      "reference_id": "landmark-botanical-conservatory-ref-10"
+    },
+    {
+      "row": 70,
+      "landmark_id": "landmark-botanical-conservatory",
+      "reference_id": "landmark-botanical-conservatory-ref-11"
+    },
+    {
+      "row": 71,
+      "landmark_id": "landmark-botanical-conservatory",
+      "reference_id": "landmark-botanical-conservatory-ref-12"
+    },
+    {
+      "row": 72,
+      "landmark_id": "landmark-botanical-conservatory",
+      "reference_id": "landmark-botanical-conservatory-ref-13"
+    },
+    {
+      "row": 73,
+      "landmark_id": "landmark-botanical-conservatory",
+      "reference_id": "landmark-botanical-conservatory-ref-14"
+    },
+    {
+      "row": 74,
+      "landmark_id": "landmark-botanical-conservatory",
+      "reference_id": "landmark-botanical-conservatory-ref-15"
+    },
+    {
+      "row": 75,
+      "landmark_id": "landmark-botanical-conservatory",
+      "reference_id": "landmark-botanical-conservatory-ref-16"
+    }
+  ]
+}

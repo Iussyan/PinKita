@@ -27,105 +27,290 @@ class DistrictDatabase(private val dbFile: File) : AutoCloseable {
         return result
     }
 
-    fun searchPlaces(query: String): List<Place> {
+    private fun resolvePlaceIdColumn(cursor: android.database.Cursor): Int {
+        val idx = cursor.getColumnIndex("place_id")
+        return if (idx >= 0) idx else cursor.getColumnIndexOrThrow("id")
+    }
+
+    private fun parsePlace(cursor: android.database.Cursor): Place {
+        val idIdx = resolvePlaceIdColumn(cursor)
+        val osmIdx = cursor.getColumnIndex("osm_ref")
+        val nameIdx = cursor.getColumnIndexOrThrow("name")
+        val normIdx = cursor.getColumnIndex("normalized_name")
+        val catIdx = cursor.getColumnIndexOrThrow("category")
+        val latIdx = cursor.getColumnIndexOrThrow("lat")
+        val lonIdx = cursor.getColumnIndexOrThrow("lon")
+        val bldIdx = cursor.getColumnIndex("building_id")
+        val recIdx = cursor.getColumnIndex("recognition_supported")
+        val addrIdx = cursor.getColumnIndex("address")
+        val hoursIdx = cursor.getColumnIndex("opening_hours")
+
+        val name = cursor.getString(nameIdx)
+        val cat = cursor.getString(catIdx)
+        val lat = cursor.getDouble(latIdx)
+        val lon = cursor.getDouble(lonIdx)
+
+        return Place(
+            id = cursor.getString(idIdx),
+            osmRef = if (osmIdx >= 0 && !cursor.isNull(osmIdx)) cursor.getString(osmIdx) else null,
+            name = name,
+            normalizedName = if (normIdx >= 0 && !cursor.isNull(normIdx)) cursor.getString(normIdx) else name.lowercase(),
+            category = cat,
+            lat = lat,
+            lon = lon,
+            buildingId = if (bldIdx >= 0 && !cursor.isNull(bldIdx)) cursor.getString(bldIdx) else null,
+            recognitionSupported = if (recIdx >= 0 && !cursor.isNull(recIdx)) cursor.getInt(recIdx) == 1 else true,
+            address = if (addrIdx >= 0 && !cursor.isNull(addrIdx)) cursor.getString(addrIdx) else null,
+            openingHours = if (hoursIdx >= 0 && !cursor.isNull(hoursIdx)) cursor.getString(hoursIdx) else null,
+            city = "Quezon City",
+            tagFeature = when (cat.lowercase()) {
+                "cafe", "coffee" -> "Local café"
+                "park", "leisure" -> "Scenic greenery"
+                "museum", "landmark", "historic" -> "Heritage site"
+                "viewpoint" -> "Scenic viewpoint"
+                "fast_food", "restaurant" -> "Dining"
+                "convenience", "shop", "supermarket" -> "Market & goods"
+                else -> "Local destination"
+            }
+        )
+    }
+
+    fun getAllPlaces(limit: Int = 150): List<Place> {
+        val results = mutableListOf<Place>()
+        val hasPlaceAliases = tableExists("place_aliases")
+        val idCol = if (hasColumn("places", "place_id")) "place_id" else "id"
+        val cursor = db.rawQuery("SELECT * FROM places ORDER BY name ASC LIMIT $limit", null)
+        cursor.use {
+            while (cursor.moveToNext()) {
+                results.add(parsePlace(cursor))
+            }
+        }
+        return results
+    }
+
+    fun getPlaceById(id: String): Place? {
+        val idCol = if (hasColumn("places", "place_id")) "place_id" else "id"
+        val cursor = db.rawQuery("SELECT * FROM places WHERE $idCol = ? LIMIT 1", arrayOf(id))
+        cursor.use {
+            if (cursor.moveToNext()) {
+                return parsePlace(cursor)
+            }
+        }
+        return null
+    }
+
+    fun getPlacesInBounds(minLat: Double, minLon: Double, maxLat: Double, maxLon: Double): List<Place> {
+        val results = mutableListOf<Place>()
+        val cursor = db.rawQuery(
+            "SELECT * FROM places WHERE lat BETWEEN ? AND ? AND lon BETWEEN ? AND ? ORDER BY name ASC LIMIT 100",
+            arrayOf(minLat.toString(), maxLat.toString(), minLon.toString(), maxLon.toString())
+        )
+        cursor.use {
+            while (cursor.moveToNext()) {
+                results.add(parsePlace(cursor))
+            }
+        }
+        return results
+    }
+
+    fun searchPlaces(query: String, categoryFilter: String? = null): List<Place> {
         val cleanQuery = query.trim().lowercase()
         val results = mutableListOf<Place>()
         val seenIds = mutableSetOf<String>()
+        val hasAliases = tableExists("place_aliases")
+        val idCol = if (hasColumn("places", "place_id")) "place_id" else "id"
 
-        val sql = if (cleanQuery.isEmpty()) {
-            "SELECT place_id, osm_ref, name, normalized_name, category, lat, lon, building_id, recognition_supported FROM places ORDER BY name ASC LIMIT 20"
-        } else {
-            """
-            SELECT DISTINCT p.place_id, p.osm_ref, p.name, p.normalized_name, p.category, p.lat, p.lon, p.building_id, p.recognition_supported,
-              CASE 
-                WHEN p.normalized_name = ? THEN 1
-                WHEN p.normalized_name LIKE ? THEN 2
-                WHEN a.normalized_alias LIKE ? THEN 3
-                ELSE 4
-              END as search_rank
-            FROM places p
-            LEFT JOIN place_aliases a ON p.place_id = a.place_id
-            WHERE p.normalized_name LIKE ? OR a.normalized_alias LIKE ?
-            ORDER BY search_rank ASC, p.name ASC
-            LIMIT 20
-            """.trimIndent()
+        val baseQuery = when {
+            cleanQuery.isEmpty() && categoryFilter.isNullOrBlank() -> {
+                "SELECT * FROM places ORDER BY name ASC LIMIT 30"
+            }
+            cleanQuery.isEmpty() && !categoryFilter.isNullOrBlank() -> {
+                "SELECT * FROM places WHERE category LIKE ? ORDER BY name ASC LIMIT 30"
+            }
+            hasAliases -> {
+                """
+                SELECT DISTINCT p.*,
+                  CASE 
+                    WHEN p.normalized_name = ? THEN 1
+                    WHEN p.normalized_name LIKE ? THEN 2
+                    WHEN a.normalized_alias LIKE ? THEN 3
+                    ELSE 4
+                  END as search_rank
+                FROM places p
+                LEFT JOIN place_aliases a ON p.$idCol = a.place_id
+                WHERE (p.normalized_name LIKE ? OR a.normalized_alias LIKE ?)
+                  ${if (!categoryFilter.isNullOrBlank()) "AND p.category LIKE ?" else ""}
+                ORDER BY search_rank ASC, p.name ASC
+                LIMIT 30
+                """.trimIndent()
+            }
+            else -> {
+                """
+                SELECT p.*,
+                  CASE 
+                    WHEN p.normalized_name = ? THEN 1
+                    WHEN p.normalized_name LIKE ? THEN 2
+                    ELSE 3
+                  END as search_rank
+                FROM places p
+                WHERE (p.normalized_name LIKE ?)
+                  ${if (!categoryFilter.isNullOrBlank()) "AND p.category LIKE ?" else ""}
+                ORDER BY search_rank ASC, p.name ASC
+                LIMIT 30
+                """.trimIndent()
+            }
         }
 
-        val args = if (cleanQuery.isEmpty()) {
-            null
-        } else {
-            val exact = cleanQuery
-            val prefix = "$cleanQuery%"
-            val substring = "%$cleanQuery%"
-            arrayOf(exact, prefix, prefix, substring, substring)
+        val args: Array<String>? = when {
+            cleanQuery.isEmpty() && categoryFilter.isNullOrBlank() -> null
+            cleanQuery.isEmpty() && !categoryFilter.isNullOrBlank() -> arrayOf("%$categoryFilter%")
+            hasAliases -> {
+                val list = mutableListOf(cleanQuery, "$cleanQuery%", "$cleanQuery%", "%$cleanQuery%", "%$cleanQuery%")
+                if (!categoryFilter.isNullOrBlank()) list.add("%$categoryFilter%")
+                list.toTypedArray()
+            }
+            else -> {
+                val list = mutableListOf(cleanQuery, "$cleanQuery%", "%$cleanQuery%")
+                if (!categoryFilter.isNullOrBlank()) list.add("%$categoryFilter%")
+                list.toTypedArray()
+            }
         }
 
-        val cursor = db.rawQuery(sql, args)
+        val cursor = db.rawQuery(baseQuery, args)
         cursor.use {
-            val idIdx = cursor.getColumnIndexOrThrow("place_id")
-            val osmIdx = cursor.getColumnIndexOrThrow("osm_ref")
-            val nameIdx = cursor.getColumnIndexOrThrow("name")
-            val normIdx = cursor.getColumnIndexOrThrow("normalized_name")
-            val catIdx = cursor.getColumnIndexOrThrow("category")
-            val latIdx = cursor.getColumnIndexOrThrow("lat")
-            val lonIdx = cursor.getColumnIndexOrThrow("lon")
-            val bldIdx = cursor.getColumnIndexOrThrow("building_id")
-            val recIdx = cursor.getColumnIndexOrThrow("recognition_supported")
-
             while (cursor.moveToNext()) {
-                val id = cursor.getString(idIdx)
-                if (seenIds.add(id)) {
-                    results.add(
-                        Place(
-                            id = id,
-                            osmRef = if (cursor.isNull(osmIdx)) null else cursor.getString(osmIdx),
-                            name = cursor.getString(nameIdx),
-                            normalizedName = cursor.getString(normIdx),
-                            category = cursor.getString(catIdx),
-                            lat = cursor.getDouble(latIdx),
-                            lon = cursor.getDouble(lonIdx),
-                            buildingId = if (cursor.isNull(bldIdx)) null else cursor.getString(bldIdx),
-                            recognitionSupported = cursor.getInt(recIdx) == 1
-                        )
-                    )
+                val place = parsePlace(cursor)
+                if (seenIds.add(place.id)) {
+                    results.add(place)
                 }
             }
         }
         return results
     }
 
+    private fun tableExists(tableName: String): Boolean {
+        return try {
+            val c = db.rawQuery("SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", arrayOf(tableName))
+            c.use { it.moveToFirst() }
+        } catch (_: Exception) {
+            false
+        }
+    }
+
+    private fun hasColumn(tableName: String, columnName: String): Boolean {
+        return try {
+            val c = db.rawQuery("PRAGMA table_info($tableName)", null)
+            c.use {
+                val nameIdx = c.getColumnIndexOrThrow("name")
+                while (c.moveToNext()) {
+                    if (c.getString(nameIdx).equals(columnName, ignoreCase = true)) {
+                        return true
+                    }
+                }
+            }
+            false
+        } catch (_: Exception) {
+            false
+        }
+    }
+
     fun getEntrancesForPlace(placeId: String): List<PlaceEntrance> {
         val results = mutableListOf<PlaceEntrance>()
+        val idCol = if (hasColumn("entrances", "entrance_id")) "entrance_id" else "id"
         val cursor = db.rawQuery(
-            "SELECT entrance_id, place_id, name, lat, lon, graph_node_id, access_status, reviewed FROM entrances WHERE place_id = ? ORDER BY reviewed DESC, name ASC",
+            "SELECT * FROM entrances WHERE place_id = ?",
             arrayOf(placeId)
         )
         cursor.use {
-            val idIdx = cursor.getColumnIndexOrThrow("entrance_id")
-            val placeIdx = cursor.getColumnIndexOrThrow("place_id")
-            val nameIdx = cursor.getColumnIndexOrThrow("name")
-            val latIdx = cursor.getColumnIndexOrThrow("lat")
-            val lonIdx = cursor.getColumnIndexOrThrow("lon")
-            val nodeIdx = cursor.getColumnIndexOrThrow("graph_node_id")
-            val accessIdx = cursor.getColumnIndexOrThrow("access_status")
-            val revIdx = cursor.getColumnIndexOrThrow("reviewed")
+            val idIdx = cursor.getColumnIndex("entrance_id").takeIf { it >= 0 } ?: cursor.getColumnIndex("id") ?: -1
+            val placeIdx = cursor.getColumnIndex("place_id")
+            val nameIdx = cursor.getColumnIndex("name")
+            val latIdx = cursor.getColumnIndex("lat")
+            val lonIdx = cursor.getColumnIndex("lon")
+            val nodeIdx = cursor.getColumnIndex("graph_node_id")
+            val accessIdx = cursor.getColumnIndex("access_status")
+            val revIdx = cursor.getColumnIndex("reviewed")
 
             while (cursor.moveToNext()) {
+                val eId = if (idIdx >= 0) cursor.getString(idIdx) else "ent-$placeId"
+                val pId = if (placeIdx >= 0) cursor.getString(placeIdx) else placeId
+                val lat = if (latIdx >= 0) cursor.getDouble(latIdx) else 0.0
+                val lon = if (lonIdx >= 0) cursor.getDouble(lonIdx) else 0.0
+                val nodeId = if (nodeIdx >= 0) cursor.getLong(nodeIdx) else -1L
+                val access = if (accessIdx >= 0 && !cursor.isNull(accessIdx)) cursor.getString(accessIdx) else "public"
+                val reviewed = if (revIdx >= 0) cursor.getInt(revIdx) == 1 else true
+                val name = if (nameIdx >= 0 && !cursor.isNull(nameIdx)) cursor.getString(nameIdx) else "Main Entrance"
+
                 results.add(
                     PlaceEntrance(
-                        id = cursor.getString(idIdx),
-                        placeId = cursor.getString(placeIdx),
-                        name = if (cursor.isNull(nameIdx)) null else cursor.getString(nameIdx),
-                        lat = cursor.getDouble(latIdx),
-                        lon = cursor.getDouble(lonIdx),
-                        graphNodeId = cursor.getLong(nodeIdx),
-                        accessStatus = cursor.getString(accessIdx),
-                        reviewed = cursor.getInt(revIdx) == 1
+                        id = eId,
+                        placeId = pId,
+                        name = name,
+                        lat = lat,
+                        lon = lon,
+                        graphNodeId = nodeId,
+                        accessStatus = access,
+                        reviewed = reviewed
                     )
                 )
             }
         }
         return results
+    }
+
+data class LandmarkRecord(
+    val id: String,
+    val placeId: String,
+    val displayName: String,
+    val lat: Double,
+    val lon: Double,
+    val recognitionRadiusM: Double
+)
+
+    fun getLandmarkById(landmarkId: String): LandmarkRecord? {
+        val table = when {
+            tableExists("landmarks") -> "landmarks"
+            tableExists("landmark_records") -> "landmark_records"
+            else -> null
+        }
+
+        if (table != null) {
+            val idCol = if (hasColumn(table, "landmark_id")) "landmark_id" else "id"
+            val cursor = db.rawQuery("SELECT * FROM $table WHERE $idCol = ? LIMIT 1", arrayOf(landmarkId))
+            cursor.use {
+                if (it.moveToNext()) {
+                    val nameIdx = if (hasColumn(table, "display_name")) it.getColumnIndex("display_name") else it.getColumnIndex("name")
+                    val latIdx = it.getColumnIndexOrThrow("lat")
+                    val lonIdx = it.getColumnIndexOrThrow("lon")
+                    val placeIdx = if (hasColumn(table, "place_id")) it.getColumnIndex("place_id") else -1
+                    val radIdx = if (hasColumn(table, "recognition_radius_m")) it.getColumnIndex("recognition_radius_m") else -1
+
+                    return LandmarkRecord(
+                        id = landmarkId,
+                        placeId = if (placeIdx >= 0 && !it.isNull(placeIdx)) it.getString(placeIdx) else "",
+                        displayName = if (nameIdx >= 0 && !it.isNull(nameIdx)) it.getString(nameIdx) else landmarkId,
+                        lat = it.getDouble(latIdx),
+                        lon = it.getDouble(lonIdx),
+                        recognitionRadiusM = if (radIdx >= 0 && !it.isNull(radIdx)) it.getDouble(radIdx) else 50.0
+                    )
+                }
+            }
+        }
+
+        // Fallback: match by place ID or normalized name
+        val cleanId = landmarkId.removePrefix("landmark-")
+        val p = getPlaceById(cleanId) ?: getPlaceById(landmarkId) ?: searchPlaces(cleanId.replace("-", " ")).firstOrNull()
+        if (p != null) {
+            return LandmarkRecord(
+                id = landmarkId,
+                placeId = p.id,
+                displayName = p.name,
+                lat = p.lat,
+                lon = p.lon,
+                recognitionRadiusM = 40.0
+            )
+        }
+        return null
     }
 
     fun loadRoutingGraph(): PedestrianGraph {

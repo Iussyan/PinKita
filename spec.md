@@ -4,7 +4,7 @@
 **Specification version:** 1.0  
 **Prepared:** 2026-10-09  
 **Status:** Implementation baseline for a hackathon prototype  
-**Working product name:** Local AR Navigator; replace with the team's chosen name  
+**Official product name:** PinKita (Tagline: "Real Places. Closer.")  
 **Platform:** Android first  
 **Theme:** Local AI  
 **Cost objective:** No paid cloud inference, mapping APIs, routing APIs, or required hosted backend
@@ -1392,7 +1392,7 @@ The defaults in this spec allow work to begin. The team should record these inpu
 | Initial pack delivery | Local import ZIP | No required hosting |
 | Language support | English UI; data may contain local names | Glyph coverage and normalization |
 | GPS/heading conditions | Outdoor testing available | AR quality and fallback |
-| Product name | Local AR Navigator as placeholder | Branding only |
+| Product name | PinKita ("Real Places. Closer.") | Final branding |
 
 Decisions already established:
 

@@ -1,0 +1,8 @@
+{
+  "model_id": "mobilenetv3-embedder-v1",
+  "input_width": 224,
+  "input_height": 224,
+  "color_space": "RGB",
+  "normalization": "none_or_standard",
+  "dimension": 1024
+}

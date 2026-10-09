@@ -9,7 +9,12 @@ data class Place(
     val lat: Double,
     val lon: Double,
     val buildingId: String?,
-    val recognitionSupported: Boolean
+    val recognitionSupported: Boolean,
+    val address: String? = null,
+    val openingHours: String? = null,
+    val city: String? = null,
+    val tagFeature: String? = null,
+    val isSaved: Boolean = false
 )
 
 data class PlaceEntrance(
