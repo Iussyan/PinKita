@@ -39,7 +39,8 @@ enum class ScreenMode {
     LANDING,
     MAP,
     CAMERA_SCANNER,
-    AR_WALK
+    AR_WALK,
+    DOWNLOAD_AREA
 }
 
 enum class NavigationTab {
@@ -91,7 +92,10 @@ data class NavigationUiState(
     val recenterTrigger: Long = 0L,
     val isIndoorAnchored: Boolean = false,
     val indoorAnchorName: String? = null,
-    val scanState: ScanUiState = ScanUiState()
+    val isDestinationVisualLocked: Boolean = false,
+    val targetBuildingHighlightActive: Boolean = false,
+    val scanState: ScanUiState = ScanUiState(),
+    val downloadState: org.localar.navigator.packs.DownloadState = org.localar.navigator.packs.DownloadState.Idle
 )
 
 class NavigationViewModel(application: Application) : AndroidViewModel(application) {
@@ -202,6 +206,77 @@ class NavigationViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 
+    private val areaDownloader = org.localar.navigator.packs.OfflineAreaDownloader(getApplication())
+
+    fun startAreaDownload(bounds: org.localar.navigator.packs.AreaBounds) {
+        viewModelScope.launch {
+            _uiState.value = _uiState.value.copy(
+                downloadState = org.localar.navigator.packs.DownloadState.Progress(5, "Preparing download...")
+            )
+            areaDownloader.downloadArea(bounds) { state ->
+                _uiState.value = _uiState.value.copy(downloadState = state)
+            }.onSuccess { packDir ->
+                switchDistrictPack(packDir)
+            }
+        }
+    }
+
+    fun resetDownloadState() {
+        _uiState.value = _uiState.value.copy(
+            downloadState = org.localar.navigator.packs.DownloadState.Idle
+        )
+    }
+
+    fun switchDistrictPack(packDir: File) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val dbFile = File(packDir, "data/region.sqlite")
+                if (!dbFile.exists()) return@launch
+                districtDatabase?.close()
+                val db = DistrictDatabase(dbFile)
+                districtDatabase = db
+
+                val metadata = db.getMetadata()
+                val districtName = metadata["district_name"] ?: "Custom Offline Area"
+                val graph = db.loadRoutingGraph()
+                pedestrianGraph = graph
+
+                val allPathsJson = db.getAllPathsGeoJson()
+                val initialPlaces = db.getAllPlaces(300).ifEmpty { db.searchPlaces("") }
+                val saved = savedPlacesRepo.getAllSavedPlaces()
+                val savedIds = saved.map { it.id }.toSet()
+                val allWithSaved = initialPlaces.map {
+                    if (savedIds.contains(it.id)) it.copy(isSaved = true) else it
+                }
+
+                val aiDir = File(packDir, "ai")
+                landmarkMatcher = PackEmbeddingLoader.loadMatcher(aiDir)
+
+                val newCenter = initialPlaces.firstOrNull()?.let { GeoPoint(it.lat, it.lon) }
+                    ?: _uiState.value.currentLocation
+
+                _uiState.value = _uiState.value.copy(
+                    isInitialized = true,
+                    districtName = districtName,
+                    currentLocation = newCenter,
+                    allPathsGeoJson = allPathsJson,
+                    allPlaces = allWithSaved,
+                    searchResults = allWithSaved,
+                    savedPlaces = saved,
+                    selectedPlace = null,
+                    selectedEntrance = null,
+                    activeRoute = null,
+                    isNavigating = false,
+                    statusMessage = "Offline area active: $districtName"
+                )
+            } catch (e: Exception) {
+                _uiState.value = _uiState.value.copy(
+                    statusMessage = "Error loading custom pack: ${e.message}"
+                )
+            }
+        }
+    }
+
     private fun observeLocationUpdates() {
         viewModelScope.launch {
             locationProvider.currentFix.collect { fix ->
@@ -228,16 +303,24 @@ class NavigationViewModel(application: Application) : AndroidViewModel(applicati
         val route = _uiState.value.activeRoute ?: return
         val entrance = _uiState.value.selectedEntrance
 
-        // 1. Check Arrival Proximity (Section 11.5 of spec.md)
-        if (entrance != null) {
-            val entrancePoint = GeoPoint(entrance.lat, entrance.lon)
-            val distToEntrance = GeoUtils.distanceMeters(currentPos, entrancePoint)
-            if (distToEntrance <= 15.0 && accuracyM <= 10.0f) {
+        // 1. Check Arrival Proximity & Destination Building Highlighting
+        val destPt = entrance?.let { GeoPoint(it.lat, it.lon) }
+            ?: _uiState.value.selectedPlace?.let { GeoPoint(it.lat, it.lon) }
+
+        if (destPt != null) {
+            val distToDest = GeoUtils.distanceMeters(currentPos, destPt)
+            val shouldHighlight = distToDest <= 45.0 || _uiState.value.isDestinationVisualLocked
+            if (shouldHighlight != _uiState.value.targetBuildingHighlightActive) {
+                _uiState.value = _uiState.value.copy(targetBuildingHighlightActive = shouldHighlight)
+            }
+
+            if (distToDest <= 12.0 && accuracyM <= 10.0f) {
                 nearEntranceCount++
-                if (nearEntranceCount >= 3) {
+                if (nearEntranceCount >= 2) {
                     _uiState.value = _uiState.value.copy(
                         isArrived = true,
-                        statusMessage = "You have arrived near ${entrance.name ?: "the entrance"}!"
+                        targetBuildingHighlightActive = true,
+                        statusMessage = "You have arrived at ${_uiState.value.selectedPlace?.name ?: "your destination"}!"
                     )
                     return
                 }
@@ -867,8 +950,17 @@ class NavigationViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun onStartNavigation() {
+        startNavigationWithAutoAr()
+    }
+
+    fun startNavigationWithAutoAr() {
         if (_uiState.value.activeRoute != null) {
-            _uiState.value = _uiState.value.copy(isNavigating = true, isArrived = false)
+            _uiState.value = _uiState.value.copy(
+                isNavigating = true,
+                isArrived = false,
+                screenMode = ScreenMode.AR_WALK,
+                currentTab = NavigationTab.AR
+            )
             locationProvider.startListening()
         }
     }
@@ -883,7 +975,11 @@ class NavigationViewModel(application: Application) : AndroidViewModel(applicati
             selectedPlace = null,
             selectedEntrance = null,
             isArrived = false,
-            currentManeuverIndex = 0
+            currentManeuverIndex = 0,
+            isDestinationVisualLocked = false,
+            targetBuildingHighlightActive = false,
+            screenMode = ScreenMode.MAP,
+            currentTab = NavigationTab.MAP
         )
     }
 

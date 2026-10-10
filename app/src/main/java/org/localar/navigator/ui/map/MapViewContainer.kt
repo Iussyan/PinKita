@@ -27,6 +27,7 @@ import org.maplibre.android.style.layers.CircleLayer
 import org.maplibre.android.style.layers.LineLayer
 import org.maplibre.android.style.layers.Property
 import org.maplibre.android.style.layers.PropertyFactory
+import org.maplibre.android.style.layers.SymbolLayer
 import org.maplibre.android.style.sources.GeoJsonSource
 import org.localar.core.geo.GeoPoint
 import org.localar.core.geo.GeoUtils
@@ -41,12 +42,13 @@ private const val LAYER_ROUTE = "route-line-layer"
 private const val SOURCE_POIS = "pois-source"
 private const val LAYER_POIS_OUTER = "pois-outer-layer"
 private const val LAYER_POIS_INNER = "pois-inner-layer"
+private const val LAYER_POIS_LABEL = "pois-label-layer"
 private const val SOURCE_POINTS = "points-source"
 private const val LAYER_USER_HALO = "user-halo-layer"
 private const val LAYER_POINTS = "points-layer"
 
 // Map Styles: Clean OSM, Topo, and Dark
-private fun getMapStyleJson(styleIndex: Int): String {
+internal fun getMapStyleJson(styleIndex: Int): String {
     val (tiles, bgColor) = when (styleIndex % 3) {
         1 -> listOf("https://a.tile.opentopomap.org/{z}/{x}/{y}.png", "https://b.tile.opentopomap.org/{z}/{x}/{y}.png") to "#E5E7EB"
         2 -> listOf("https://cartodb-basemaps-a.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png", "https://cartodb-basemaps-b.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png") to "#111827"
@@ -97,7 +99,8 @@ fun MapViewContainer(
     mapStyleIndex: Int = 0,
     recenterTrigger: Long = 0L,
     onPlaceSelected: ((Place) -> Unit)? = null,
-    onMapClick: ((GeoPoint) -> Unit)? = null
+    onMapClick: ((GeoPoint) -> Unit)? = null,
+    onSelectedPlaceScreenPositionChanged: ((Float, Float) -> Unit)? = null
 ) {
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -139,6 +142,14 @@ fun MapViewContainer(
                     true
                 }
 
+                map.addOnCameraMoveListener {
+                    val place = selectedPlace
+                    if (place != null) {
+                        val pt = map.projection.toScreenLocation(LatLng(place.lat, place.lon))
+                        onSelectedPlaceScreenPositionChanged?.invoke(pt.x.toFloat(), pt.y.toFloat())
+                    }
+                }
+
                 // Initial position centered on user
                 val startPos = CameraPosition.Builder()
                     .target(LatLng(currentLocation.lat, currentLocation.lon))
@@ -151,6 +162,16 @@ fun MapViewContainer(
                     setupLayers(style)
                 }
             }
+        }
+    }
+
+    // Update screen position of selected place when selection changes or style loads
+    LaunchedEffect(selectedPlace, mapInstance, styleInstance) {
+        val place = selectedPlace
+        val map = mapInstance
+        if (place != null && map != null) {
+            val pt = map.projection.toScreenLocation(LatLng(place.lat, place.lon))
+            onSelectedPlaceScreenPositionChanged?.invoke(pt.x.toFloat(), pt.y.toFloat())
         }
     }
 
@@ -415,6 +436,18 @@ private fun setupLayers(style: Style) {
         )
     }
     style.addLayer(poisInner)
+
+    val poisLabels = SymbolLayer(LAYER_POIS_LABEL, SOURCE_POIS).apply {
+        setProperties(
+            PropertyFactory.textField(Expression.get("name")),
+            PropertyFactory.textSize(11f),
+            PropertyFactory.textColor(Color.parseColor("#16302C")),
+            PropertyFactory.textOffset(arrayOf(0f, 1.4f)),
+            PropertyFactory.textHaloColor(Color.WHITE),
+            PropertyFactory.textHaloWidth(1.8f)
+        )
+    }
+    style.addLayer(poisLabels)
 
     // 4. Points Source and Layer (User Puck & Destination Pin)
     val pointsSource = GeoJsonSource(SOURCE_POINTS)

@@ -49,29 +49,58 @@ fun LandingScreen(
                 .navigationBarsPadding()
                 .padding(bottom = 20.dp)
         ) {
-            // 1. Header Landscape Illustration with Trees & Mountains
+            // 1. Header Landscape Illustration with PinKita Logo
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(135.dp)
+                    .height(160.dp)
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.landing_header_bg),
                     contentDescription = null,
-                    contentScale = ContentScale.FillBounds,
+                    contentScale = ContentScale.Crop,
                     modifier = Modifier.fillMaxSize()
                 )
+                // Centered PinKita Logo
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .padding(top = 10.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_pinkita_mark),
+                        contentDescription = "PinKita",
+                        modifier = Modifier.size(36.dp)
+                    )
+                    Column {
+                        Text(
+                            text = "PinKita",
+                            fontSize = 26.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = PinKitaColors.TextDark
+                        )
+                        Text(
+                            text = "REAL PLACES. CLOSER.",
+                            fontSize = 8.5.sp,
+                            fontWeight = FontWeight.ExtraBold,
+                            color = PinKitaColors.ForestGreen,
+                            letterSpacing = 1.2.sp
+                        )
+                    }
+                }
             }
 
-            Spacer(modifier = Modifier.height(6.dp))
+            Spacer(modifier = Modifier.height(10.dp))
 
             // 2. Headline & Subheading
             Text(
-                text = "even offline.",
+                text = "Navigate instantly,\neven offline.",
                 style = MaterialTheme.typography.headlineMedium.copy(
                     fontWeight = FontWeight.ExtraBold,
-                    fontSize = 27.sp,
-                    lineHeight = 33.sp,
+                    fontSize = 28.sp,
+                    lineHeight = 34.sp,
                     letterSpacing = (-0.5).sp
                 ),
                 color = PinKitaColors.TextDark,
@@ -213,14 +242,14 @@ fun LandingScreen(
                                 contentAlignment = Alignment.Center
                             ) {
                                 Icon(
-                                    imageVector = Icons.Rounded.Explore,
+                                    imageVector = Icons.Rounded.CenterFocusStrong,
                                     contentDescription = null,
-                                    tint = PinKitaColors.PineGreen,
-                                    modifier = Modifier.size(18.dp)
+                                    tint = PinKitaColors.DeepTeal,
+                                    modifier = Modifier.size(20.dp)
                                 )
                             }
                         },
-                        title = "AR Nav",
+                        title = "AR Navigation",
                         subtitle = "Ready"
                     )
                 }
@@ -321,8 +350,24 @@ fun LandingScreen(
                     )
                 }
             }
-        
+
             Spacer(modifier = Modifier.height(10.dp))
+
+            // "Sign in later" text link matching mockup
+            Text(
+                text = "Sign in later",
+                style = MaterialTheme.typography.bodyMedium.copy(
+                    fontSize = 13.5.sp,
+                    fontWeight = FontWeight.SemiBold
+                ),
+                color = PinKitaColors.ForestGreen,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { onSignInLater() }
+            )
+
+            Spacer(modifier = Modifier.height(14.dp))
 
             // 8. "What you can do offline" Section
             Column(
@@ -362,6 +407,7 @@ fun LandingScreen(
                 ) {
                     OfflineActionCard(
                         modifier = Modifier.weight(1f),
+                        onClick = onContinue,
                         icon = {
                             Box(
                                 modifier = Modifier
@@ -383,6 +429,7 @@ fun LandingScreen(
 
                     OfflineActionCard(
                         modifier = Modifier.weight(1f),
+                        onClick = onContinue,
                         icon = {
                             Box(
                                 modifier = Modifier
@@ -404,6 +451,7 @@ fun LandingScreen(
 
                     OfflineActionCard(
                         modifier = Modifier.weight(1f),
+                        onClick = onContinue,
                         icon = {
                             Box(
                                 modifier = Modifier
@@ -412,10 +460,10 @@ fun LandingScreen(
                                 contentAlignment = Alignment.Center
                             ) {
                                 Icon(
-                                    imageVector = Icons.Rounded.Explore,
+                                    imageVector = Icons.Rounded.CenterFocusStrong,
                                     contentDescription = null,
-                                    tint = PinKitaColors.PineGreen,
-                                    modifier = Modifier.size(17.dp)
+                                    tint = PinKitaColors.DeepTeal,
+                                    modifier = Modifier.size(18.dp)
                                 )
                             }
                         },
@@ -488,6 +536,7 @@ private fun LandingBadgeItem(
 @Composable
 private fun OfflineActionCard(
     modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
     icon: @Composable () -> Unit,
     title: String,
     description: String
@@ -496,7 +545,7 @@ private fun OfflineActionCard(
         shape = RoundedCornerShape(14.dp),
         color = PinKitaColors.SurfaceWarm,
         border = BorderStroke(1.dp, PinKitaColors.BorderWarm),
-        modifier = modifier
+        modifier = modifier.clickable { onClick() }
     ) {
         Column(
             modifier = Modifier.padding(10.dp),

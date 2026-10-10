@@ -72,13 +72,14 @@ fun SearchAndRouteScreen(
     val uiState by viewModel.uiState.collectAsState()
     val context = LocalContext.current
     var isSearchFocused by remember { mutableStateOf(false) }
+    var selectedPinScreenPos by remember { mutableStateOf<Pair<Float, Float>?>(null) }
+    val density = androidx.compose.ui.platform.LocalDensity.current
 
     if (uiState.screenMode == ScreenMode.LANDING) {
         LandingScreen(
             onContinue = { viewModel.setScreenMode(ScreenMode.MAP) },
             onDownloadMaps = {
-                viewModel.setScreenMode(ScreenMode.MAP)
-                viewModel.showAttributionDialog(true)
+                viewModel.setScreenMode(ScreenMode.DOWNLOAD_AREA)
             },
             onSignInLater = { viewModel.setScreenMode(ScreenMode.MAP) },
             modifier = modifier
@@ -111,6 +112,9 @@ fun SearchAndRouteScreen(
                     },
                     onMapClick = { clickedGeoPoint ->
                         viewModel.onMapLocationSelected(clickedGeoPoint)
+                    },
+                    onSelectedPlaceScreenPositionChanged = { x, y ->
+                        selectedPinScreenPos = Pair(x, y)
                     }
                 )
             }
@@ -126,20 +130,30 @@ fun SearchAndRouteScreen(
                     modifier = Modifier.fillMaxSize()
                 )
             }
+            ScreenMode.DOWNLOAD_AREA -> {
+                org.localar.navigator.ui.download.DownloadAreaScreen(
+                    viewModel = viewModel,
+                    onBack = { viewModel.setScreenMode(ScreenMode.MAP) },
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
             ScreenMode.LANDING -> {}
         }
 
-        // 2. Top Header Controls (PinKita Brand + Offline Status Pill + Search Bar)
-        Column(
-            modifier = Modifier
-                .align(Alignment.TopCenter)
-                .statusBarsPadding()
-                .padding(horizontal = 16.dp, vertical = 6.dp)
-                .fillMaxWidth()
-        ) {
+        // 2. Top Header Controls (PinKita Brand + Offline Status Pill + Search Bar) - only in Map mode when not navigating
+        if (uiState.screenMode == ScreenMode.MAP && !uiState.isNavigating) {
+            Column(
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .statusBarsPadding()
+                    .padding(start = 16.dp, end = 16.dp, top = 10.dp, bottom = 6.dp)
+                    .fillMaxWidth()
+            ) {
             // Brand Logo & Offline Active Pill
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 2.dp, bottom = 8.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -210,9 +224,9 @@ fun SearchAndRouteScreen(
 
             // Floating Search Bar ("Search nearby places")
             Surface(
-                shape = RoundedCornerShape(16.dp),
+                shape = RoundedCornerShape(28.dp),
                 color = Color.White,
-                shadowElevation = 6.dp,
+                shadowElevation = 5.dp,
                 border = BorderStroke(0.5.dp, Color(0x1F000000)),
                 modifier = Modifier.fillMaxWidth()
             ) {
@@ -366,54 +380,100 @@ fun SearchAndRouteScreen(
                 }
             }
         }
+    }
 
-        // 3. Right-side Floating Action Controls (Layers, Recenter, Download)
-        if (uiState.screenMode == ScreenMode.MAP) {
-            Column(
+        // 3. Right-side Floating Action Controls (Unified vertical card matching mockup)
+        if (uiState.screenMode == ScreenMode.MAP && !uiState.isNavigating) {
+            Surface(
+                shape = RoundedCornerShape(16.dp),
+                color = Color.White,
+                shadowElevation = 6.dp,
+                border = BorderStroke(0.5.dp, Color(0x1F000000)),
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .statusBarsPadding()
-                    .padding(top = 115.dp, end = 16.dp),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
+                    .padding(top = 130.dp, end = 16.dp)
             ) {
-                // Style Layers button
-                FloatingMapButton(
-                    icon = Icons.Rounded.Layers,
-                    contentDescription = "Map Style",
-                    onClick = { viewModel.cycleMapStyle() }
-                )
-
-                // Recenter GPS button
-                FloatingMapButton(
-                    icon = Icons.Rounded.NearMe,
-                    contentDescription = "Recenter",
-                    onClick = { viewModel.recenterMap() }
-                )
-
-                // Download Area Pack button
-                FloatingMapButton(
-                    icon = Icons.Rounded.FileDownload,
-                    contentDescription = "Download Maps",
-                    onClick = { viewModel.showAttributionDialog(true) }
-                )
+                Column(
+                    modifier = Modifier.width(46.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    IconButton(
+                        onClick = { viewModel.cycleMapStyle() },
+                        modifier = Modifier.size(46.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Rounded.Layers,
+                            contentDescription = "Map Style",
+                            tint = BrandTextDark,
+                            modifier = Modifier.size(22.dp)
+                        )
+                    }
+                    HorizontalDivider(
+                        modifier = Modifier.padding(horizontal = 6.dp),
+                        color = Color(0x1F000000),
+                        thickness = 0.5.dp
+                    )
+                    IconButton(
+                        onClick = { viewModel.recenterMap() },
+                        modifier = Modifier.size(46.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Rounded.NearMe,
+                            contentDescription = "Recenter",
+                            tint = BrandTextDark,
+                            modifier = Modifier.size(22.dp)
+                        )
+                    }
+                    HorizontalDivider(
+                        modifier = Modifier.padding(horizontal = 6.dp),
+                        color = Color(0x1F000000),
+                        thickness = 0.5.dp
+                    )
+                    IconButton(
+                        onClick = { viewModel.showAttributionDialog(true) },
+                        modifier = Modifier.size(46.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Rounded.FileDownload,
+                            contentDescription = "Download Maps",
+                            tint = BrandTextDark,
+                            modifier = Modifier.size(22.dp)
+                        )
+                    }
+                }
             }
         }
 
-        // 4. Floating Callout Card above selected place on map
+        // 4. Floating Callout Card anchored dynamically beside selected place on map
         if (uiState.screenMode == ScreenMode.MAP && uiState.selectedPlace != null && !uiState.isNavigating) {
             val place = uiState.selectedPlace!!
             val distM = uiState.activeRoute?.totalDistanceM
                 ?: GeoUtils.distanceMeters(uiState.currentLocation, GeoPoint(place.lat, place.lon))
             val etaMin = max(1, (distM / 78.0).toInt())
 
+            val pinPos = selectedPinScreenPos
+            val calloutModifier = if (pinPos != null) {
+                val xDp = with(density) { pinPos.first.toDp() }
+                val yDp = with(density) { pinPos.second.toDp() }
+                Modifier
+                    .align(Alignment.TopStart)
+                    .offset(
+                        x = (xDp + 16.dp).coerceIn(16.dp, 160.dp),
+                        y = (yDp - 52.dp).coerceIn(90.dp, 400.dp)
+                    )
+            } else {
+                Modifier
+                    .align(Alignment.Center)
+                    .offset(y = (-70).dp)
+            }
+
             Surface(
                 shape = RoundedCornerShape(16.dp),
                 color = Color.White,
                 shadowElevation = 8.dp,
                 border = BorderStroke(1.dp, Color(0x1F000000)),
-                modifier = Modifier
-                    .align(Alignment.Center)
-                    .offset(y = (-70).dp)
+                modifier = calloutModifier
                     .clickable { viewModel.onStartNavigation() }
             ) {
                 Row(
@@ -546,9 +606,9 @@ fun SearchAndRouteScreen(
             }
         }
 
-        // 7. Active Navigation Turn-by-Turn Panel (Replaces tabs when active)
+        // 7. Active Navigation Turn-by-Turn Panel (Only in 2D MAP mode during navigation)
         AnimatedVisibility(
-            visible = uiState.isNavigating,
+            visible = uiState.isNavigating && uiState.screenMode == ScreenMode.MAP,
             enter = slideInVertically(initialOffsetY = { it }) + fadeIn(),
             exit = slideOutVertically(targetOffsetY = { it }) + fadeOut(),
             modifier = Modifier
@@ -643,6 +703,11 @@ fun SearchAndRouteScreen(
                 totalPlaces = uiState.allPlaces.size,
                 isDiagnostics = uiState.diagnosticsVisible,
                 onToggleDiagnostics = { viewModel.toggleDiagnostics() },
+                onDownloadCustomArea = {
+                    viewModel.dismissSheets()
+                    viewModel.showAttributionDialog(false)
+                    viewModel.setScreenMode(ScreenMode.DOWNLOAD_AREA)
+                },
                 onDismiss = {
                     viewModel.dismissSheets()
                     viewModel.showAttributionDialog(false)
@@ -946,12 +1011,15 @@ private fun PlaceDetailSheet(
                     }
                 }
 
-                // "Start AR" button (White with teal border)
-                OutlinedButton(
+                // "Start AR" button (Soft mint container fill matching mockup)
+                Button(
                     onClick = onStartAr,
                     shape = RoundedCornerShape(16.dp),
-                    border = BorderStroke(1.5.dp, BrandDeepTeal),
-                    colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.White),
+                    border = BorderStroke(1.dp, MintBorder),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MintLight,
+                        contentColor = BrandDeepTeal
+                    ),
                     contentPadding = PaddingValues(horizontal = 14.dp, vertical = 12.dp),
                     modifier = Modifier.weight(1.0f)
                 ) {
@@ -1084,7 +1152,9 @@ private fun NavigationGuidanceCard(
                     Surface(
                         shape = CircleShape,
                         color = Color(0x33FFFFFF),
-                        modifier = Modifier.size(44.dp)
+                        modifier = Modifier
+                            .size(44.dp)
+                            .clickable { onNext() }
                     ) {
                         Box(contentAlignment = Alignment.Center) {
                             Icon(
@@ -1096,7 +1166,11 @@ private fun NavigationGuidanceCard(
                         }
                     }
 
-                    Column(modifier = Modifier.weight(1f)) {
+                    Column(
+                        modifier = Modifier
+                            .weight(1f)
+                            .clickable { onNext() }
+                    ) {
                         Text(
                             text = maneuver?.instruction ?: "Proceed along route",
                             fontWeight = FontWeight.Bold,
@@ -1105,7 +1179,7 @@ private fun NavigationGuidanceCard(
                         )
                         val etaMin = max(1, (totalCostS / 60.0).toInt())
                         Text(
-                            text = "${formatDistance(totalDistanceM)} • $etaMin min left",
+                            text = "Step ${currentIndex + 1} of $totalManeuvers • ${formatDistance(totalDistanceM)} • $etaMin min",
                             fontSize = 12.sp,
                             color = Color(0xFFA7F3D0)
                         )
@@ -1151,6 +1225,8 @@ private fun SavedPlacesDialog(
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
+        containerColor = BrandSurface,
+        shape = RoundedCornerShape(20.dp),
         title = {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -1246,11 +1322,14 @@ private fun SettingsAndPackDialog(
     totalPlaces: Int,
     isDiagnostics: Boolean,
     onToggleDiagnostics: () -> Unit,
+    onDownloadCustomArea: () -> Unit,
     onDismiss: () -> Unit
 ) {
     val context = LocalContext.current
     AlertDialog(
         onDismissRequest = onDismiss,
+        containerColor = BrandSurface,
+        shape = RoundedCornerShape(20.dp),
         title = {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -1287,6 +1366,19 @@ private fun SettingsAndPackDialog(
                     }
                 }
 
+                // Download New Area on Map
+                OutlinedButton(
+                    onClick = onDownloadCustomArea,
+                    modifier = Modifier.fillMaxWidth().height(44.dp),
+                    shape = RoundedCornerShape(12.dp),
+                    colors = ButtonDefaults.outlinedButtonColors(contentColor = BrandDeepTeal),
+                    border = BorderStroke(1.dp, BrandDeepTeal)
+                ) {
+                    Icon(imageVector = Icons.Rounded.Download, contentDescription = null, modifier = Modifier.size(18.dp))
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text("Download New Area on Map", fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                }
+
                 // Diagnostics switch
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -1299,7 +1391,13 @@ private fun SettingsAndPackDialog(
                     }
                     Switch(
                         checked = isDiagnostics,
-                        onCheckedChange = { onToggleDiagnostics() }
+                        onCheckedChange = { onToggleDiagnostics() },
+                        colors = SwitchDefaults.colors(
+                            checkedThumbColor = Color.White,
+                            checkedTrackColor = BrandForestGreen,
+                            uncheckedThumbColor = BrandTextMuted,
+                            uncheckedTrackColor = BrandBorder
+                        )
                     )
                 }
 

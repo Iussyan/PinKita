@@ -9,12 +9,15 @@ import androidx.camera.view.PreviewView
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -153,6 +156,23 @@ fun CameraScannerView(
             }
         }
 
+        // Back / Close button at Top-Start
+        IconButton(
+            onClick = { viewModel.setScreenMode(org.localar.navigator.navigation.ScreenMode.MAP) },
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                .statusBarsPadding()
+                .padding(16.dp)
+                .size(40.dp)
+                .background(Color(0x88000000), CircleShape)
+        ) {
+            Icon(
+                imageVector = Icons.Rounded.ArrowBack,
+                contentDescription = "Back to Map",
+                tint = Color.White
+            )
+        }
+
         // 3. Status Badge HUD at Bottom Center
         Surface(
             modifier = Modifier
@@ -160,7 +180,8 @@ fun CameraScannerView(
                 .padding(bottom = 32.dp, start = 20.dp, end = 20.dp)
                 .fillMaxWidth(),
             shape = RoundedCornerShape(20.dp),
-            color = Color(0xEE0F172A),
+            color = Color(0xF20F4C4C),
+            border = BorderStroke(1.dp, Color(0x33A7F3D0)),
             tonalElevation = 8.dp
         ) {
             Column(
@@ -231,12 +252,12 @@ fun CameraScannerView(
                             CircularProgressIndicator(
                                 modifier = Modifier.size(16.dp),
                                 strokeWidth = 2.dp,
-                                color = Color(0xFF00E5FF)
+                                color = Color(0xFFA7F3D0)
                             )
                             Text(
                                 text = "MobileNetV3 Scanning (Zero Cloud)…",
                                 style = MaterialTheme.typography.bodyMedium,
-                                color = Color(0xFF00E5FF)
+                                color = Color(0xFFA7F3D0)
                             )
                         }
                     }
